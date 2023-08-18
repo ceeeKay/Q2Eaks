@@ -2,6 +2,8 @@
 
 A collection of "tweaks" (small mods) for Quake 2 Enhanced multiplayer servers.
 
+All tweaks are off (0) by default and need to be set on (1) before starting a map.
+
 ## Faster Blasters
 
 server game variable: `g_faster_blasters`
