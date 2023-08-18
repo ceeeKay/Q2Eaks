@@ -2,6 +2,18 @@
 
 A collection of "tweaks" (small mods) for Quake 2 Enhanced multiplayer servers.
 
+## Installing
+
+1. Download the latest `game_x64.dll` from https://github.com/ceeeKay/Q2ETweaks/releases
+2. Put `game_x64.dll` into a mod-specific subdirectory (i.e. `q2etweaks`) in your
+   `%USERPROFILE%\Saved Games\Nightdive Studios\Quake II` directory
+
+## Loading
+
+1. Launch Quake II Remaster, open the console (`~`) and type `game q2etweaks`
+2. Set your Q2ETweaks server game variables as you like (see below)
+3. Start a game via menu, `map` command, etc.
+
 ## New Server Variables
 
 All tweaks implemented as server game variables, and are off (0) by default and
@@ -33,7 +45,9 @@ server game variable: `g_rockets_only`
 
 All rockets, all the time.
 
-## Visual Studio 2022 Build Notes
+## Developers
+
+### Visual Studio 2022 Build Notes
 
 - Sources originally from https://github.com/id-Software/quake2-rerelease-dll
 - No preprocessor defines have been added to what was already in game.soln
@@ -44,9 +58,9 @@ All rockets, all the time.
     - Originally I'd left it at C++2017 and installed fmt from NuGet but build
       spit out a bunch of errors related to formatting; went away with C++2020
 
-## TO DO List
+### To Do
 
-(Pull requests are welcomed!)
+Pull requests are welcomed, but eventually I may get to these on my own.
 
 - Centerprint "you fragged x" messages
 - Centerprint "fragged by x with y health z armor"
