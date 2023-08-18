@@ -260,7 +260,7 @@ void InitGame()
 
 	// Q2ETweaks
 	if (g_faster_blasters->integer)
-		sv_maxvelocity = gi.cvar("sv_maxvelocity", "5000", CVAR_NOFLAGS);
+		sv_maxvelocity = gi.cvar_set("sv_maxvelocity", "5000");
 
 	// [Paril-KEX]
 	g_coop_player_collision = gi.cvar("g_coop_player_collision", "0", CVAR_LATCH);
