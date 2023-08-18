@@ -51,6 +51,8 @@ All rockets, all the time.
 
 ## Developers
 
+Pull requests are welcomed!
+
 ### Visual Studio 2022 Build Notes
 
 - Sources originally from https://github.com/id-Software/quake2-rerelease-dll
@@ -61,12 +63,3 @@ All rockets, all the time.
 - Switched language standard for Debug and Release from C++2017 to C++2020
     - Originally I'd left it at C++2017 and installed fmt from NuGet but build
       spit out a bunch of errors related to formatting; went away with C++2020
-
-### To Do
-
-Pull requests are welcomed, but eventually I may get to these on my own.
-
-- Centerprint "you fragged x" messages
-- Centerprint "fragged by x with y health z armor"
-- Centerprint list of enabled tweaks on server in welcome message
-- Game timer in HUD!
