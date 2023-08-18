@@ -104,6 +104,7 @@ cvar_t* g_weapon_respawn_time;
 
 // Q2ETweaks
 cvar_t* g_faster_blasters;
+cvar_t* g_spawn_with_chainfist;
 
 // dm"flags"
 cvar_t* g_no_health;
@@ -251,6 +252,7 @@ void InitGame()
 
 	// Q2ETweaks
 	g_faster_blasters = gi.cvar("g_faster_blasters", "0", CVAR_NOFLAGS);
+	g_spawn_with_chainfist = gi.cvar("g_spawn_with_chainfist", "0", CVAR_NOFLAGS);
 
 	// Q2ETweaks
 	if (g_faster_blasters->integer)

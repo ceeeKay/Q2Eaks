@@ -871,6 +871,12 @@ void InitClientPersistant(edict_t *ent, gclient_t *client)
 				client->pers.inventory[IT_AMMO_SLUGS] = 99;
 			}
 
+			// Q2ETweaks
+			if (g_spawn_with_chainfist->integer)
+			{
+				client->pers.inventory[IT_WEAPON_CHAINFIST] = 1;
+			}
+
 			if (level.start_items && *level.start_items)
 				Player_GiveStartItems(ent, level.start_items);
 
