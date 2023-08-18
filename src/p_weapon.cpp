@@ -27,7 +27,8 @@ bool G_CheckInfiniteAmmo(gitem_t *item)
 	if (item->flags & IF_NO_INFINITE_AMMO)
 		return false;
 
-	return g_infinite_ammo->integer || g_instagib->integer;
+	// Q2ETweaks add rockets only to infinite ammo mode list
+	return g_infinite_ammo->integer || g_instagib->integer || g_rockets_only;
 }
 
 //========

@@ -27,6 +27,12 @@ server game variable: `g_spawn_with_shotgun`
 
 Give newly-spawned players a fighting chance. Give them a shotgun when they spawn!
 
+### Rockets Only
+
+server game variable: `g_rockets_only`
+
+All rockets, all the time.
+
 ## Visual Studio 2022 Build Notes
 
 - Sources originally from https://github.com/id-Software/quake2-rerelease-dll
@@ -42,7 +48,6 @@ Give newly-spawned players a fighting chance. Give them a shotgun when they spaw
 
 (Pull requests are welcomed!)
 
-- Rockets-only mode
 - Centerprint "you fragged x" messages
 - Centerprint "fragged by x with y health z armor"
 - Centerprint list of enabled tweaks on server in welcome message

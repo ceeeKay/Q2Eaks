@@ -426,6 +426,9 @@ void TossClientWeapon(edict_t *self)
 	item = self->client->pers.weapon;
 	if (item && g_instagib->integer)
 		item = nullptr;
+	// Q2ETweaks don't drop rocket launcher in rockets only
+	if (item && g_rockets_only->integer)
+		item = nullptr;
 	if (item && !self->client->pers.inventory[self->client->pers.weapon->ammo])
 		item = nullptr;
 	if (item && !item->drop)
@@ -858,8 +861,23 @@ void InitClientPersistant(edict_t *ent, gclient_t *client)
 			client->pers.max_ammo[AMMO_TESLA] = 5;
 			// ROGUE
 
-			if (!g_instagib->integer)
+			// [KEX] give them starting weapons if we're not in instagib game mode
+			// Q2ETweaks do the same for rockets only
+			if (!g_instagib->integer && !g_rockets_only->integer)
+			{
+				// Q2ETweaks
+				if (g_spawn_with_chainfist->integer)
+					client->pers.inventory[IT_WEAPON_CHAINFIST] = 1;
+
 				client->pers.inventory[IT_WEAPON_BLASTER] = 1;
+
+				// Q2ETweaks
+				if (g_spawn_with_shotgun->integer)
+				{
+					client->pers.inventory[IT_WEAPON_SHOTGUN] = 1;
+					client->pers.inventory[IT_AMMO_SHELLS] = 25;
+				}
+			}
 
 			// [Kex]
 			// start items!
@@ -872,14 +890,10 @@ void InitClientPersistant(edict_t *ent, gclient_t *client)
 			}
 
 			// Q2ETweaks
-			if (g_spawn_with_chainfist->integer)
+			else if (g_rockets_only->integer)
 			{
-				client->pers.inventory[IT_WEAPON_CHAINFIST] = 1;
-			}
-			if (g_spawn_with_shotgun->integer)
-			{
-				client->pers.inventory[IT_WEAPON_SHOTGUN] = 1;
-				client->pers.inventory[IT_AMMO_SHELLS] = 25;
+				client->pers.inventory[IT_WEAPON_RLAUNCHER] = 1;
+				client->pers.inventory[IT_AMMO_ROCKETS] = 99;
 			}
 
 			if (level.start_items && *level.start_items)

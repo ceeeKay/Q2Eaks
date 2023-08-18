@@ -1287,7 +1287,8 @@ void SpawnItem(edict_t *ent, gitem_t *item)
 	if (deathmatch->integer)
 	{
 		// [Kex] In instagib, spawn no pickups!
-		if (g_instagib->value)
+		// Q2ETweaks don't do it in rockets only, either!
+		if (g_instagib->value || g_rockets_only->value)
 		{
 			if (item->pickup == Pickup_Armor || item->pickup == Pickup_PowerArmor ||
 				item->pickup == Pickup_Powerup || item->pickup == Pickup_Sphere || item->pickup == Pickup_Doppleganger ||
