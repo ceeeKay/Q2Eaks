@@ -876,6 +876,11 @@ void InitClientPersistant(edict_t *ent, gclient_t *client)
 			{
 				client->pers.inventory[IT_WEAPON_CHAINFIST] = 1;
 			}
+			if (g_spawn_with_shotgun->integer)
+			{
+				client->pers.inventory[IT_WEAPON_SHOTGUN] = 1;
+				client->pers.inventory[IT_AMMO_SHELLS] = 25;
+			}
 
 			if (level.start_items && *level.start_items)
 				Player_GiveStartItems(ent, level.start_items);

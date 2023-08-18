@@ -15,3 +15,9 @@ Also adjusts `sv_maxvelocity` from default of 2000 to 5000.
 server game variable: `g_spawn_with_chainfist`
 
 Everybody needs a good melee weapon. Give players a chainfist when they spawn!
+
+## Spawn With Shotgun
+
+server game variable: `g_spawn_with_shotgun`
+
+Give newly-spawned players a fighting chance. Give them a shotgun when they spawn!
