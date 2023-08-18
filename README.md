@@ -7,6 +7,10 @@ A collection of "tweaks" (small mods) for Quake 2 Enhanced multiplayer servers.
 1. Download the latest `game_x64.dll` from https://github.com/ceeeKay/Q2ETweaks/releases
 2. Put `game_x64.dll` into a mod-specific subdirectory (i.e. `q2etweaks`) in your
    `%USERPROFILE%\Saved Games\Nightdive Studios\Quake II` directory
+3. If you want to host online games, you may instead need to put `game_x64.dll` into
+   `...\SteamLibrary\steamapps\common\Quake 2\rerelease` instead.
+   BACK UP YOUR ORIGINAL game_x64.dll FILE!!! (e.g. rename to game_x64.dll.orig)
+   You can use Steam's "check files" if you have an accident, though.
 
 ## Loading
 
