@@ -1,1 +1,5 @@
+game_x64.*
 .vs/
+src/game.vcxproj.user
+src/x64/
+src/packages/
