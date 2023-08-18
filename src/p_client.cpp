@@ -2311,7 +2311,10 @@ void ClientBeginDeathmatch(edict_t *ent)
 		}
 	}
 
-	gi.LocBroadcast_Print(PRINT_HIGH, "$g_entered_game", ent->client->pers.netname);
+	// print mod-specific welcome messages
+	// gi.LocBroadcast_Print(PRINT_HIGH, "$g_entered_game", ent->client->pers.netname);
+	gi.LocBroadcast_Print(PRINT_HIGH, "Welcome to Q2ETweaks, {}!", ent->client->pers.netname);
+	gi.LocClient_Print(ent, PRINT_CENTER, "Welcome to Q2ETweaks, {}!", ent->client->pers.netname);
 
 	// make sure all view stuff is valid
 	ClientEndServerFrame(ent);
