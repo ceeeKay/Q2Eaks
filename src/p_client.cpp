@@ -2336,10 +2336,23 @@ void ClientBeginDeathmatch(edict_t *ent)
 		}
 	}
 
-	// print mod-specific welcome messages
+	// Q2ETweaks print mod-specific welcome messages instead
 	// gi.LocBroadcast_Print(PRINT_HIGH, "$g_entered_game", ent->client->pers.netname);
 	gi.LocBroadcast_Print(PRINT_HIGH, "Welcome to Q2ETweaks, {}!", ent->client->pers.netname);
-	gi.LocClient_Print(ent, PRINT_CENTER, "Welcome to Q2ETweaks, {}!", ent->client->pers.netname);
+
+	std::string q2etweaks_welcome;
+	if (g_faster_blasters->integer)
+		q2etweaks_welcome += "\tFaster Blasters\n";
+	if (g_spawn_with_chainfist->integer)
+		q2etweaks_welcome += "\tSpawn With Chainfist\n";
+	if (g_spawn_with_shotgun->integer)
+		q2etweaks_welcome += "\tSpawn With Shotgun\n";
+	if (g_rockets_only->integer)
+		q2etweaks_welcome += "\tRockets Only\n";
+	q2etweaks_welcome += " \nQuake Remastered community discord\nquakeqe.com\n";
+	gi.LocClient_Print(ent, PRINT_CENTER,
+						"Welcome to Q2ETweaks, {}!\n\nEnabled settings:\n{}",
+						ent->client->pers.netname, q2etweaks_welcome.c_str());
 
 	// make sure all view stuff is valid
 	ClientEndServerFrame(ent);
