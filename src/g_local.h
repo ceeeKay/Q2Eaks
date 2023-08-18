@@ -1894,6 +1894,9 @@ extern cvar_t* g_grapple_fly_speed;
 extern cvar_t* g_grapple_pull_speed;
 extern cvar_t* g_grapple_damage;
 
+// Q2ETweaks
+extern cvar_t* g_faster_blasters;
+
 extern cvar_t *sv_airaccelerate;
 
 extern cvar_t *g_damage_scale;

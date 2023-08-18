@@ -102,6 +102,9 @@ cvar_t* g_grapple_damage;
 cvar_t* g_coop_health_scaling;
 cvar_t* g_weapon_respawn_time;
 
+// Q2ETweaks
+cvar_t* g_faster_blasters;
+
 // dm"flags"
 cvar_t* g_no_health;
 cvar_t* g_no_items;
@@ -245,6 +248,13 @@ void InitGame()
 
 	// [Kex] Instagib
 	g_instagib = gi.cvar("g_instagib", "0", CVAR_NOFLAGS);
+
+	// Q2ETweaks
+	g_faster_blasters = gi.cvar("g_faster_blasters", "0", CVAR_NOFLAGS);
+
+	// Q2ETweaks
+	if (g_faster_blasters->integer)
+		sv_maxvelocity = gi.cvar("sv_maxvelocity", "5000", CVAR_NOFLAGS);
 
 	// [Paril-KEX]
 	g_coop_player_collision = gi.cvar("g_coop_player_collision", "0", CVAR_LATCH);
