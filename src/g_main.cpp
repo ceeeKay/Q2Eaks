@@ -102,10 +102,10 @@ cvar_t* g_grapple_damage;
 cvar_t* g_coop_health_scaling;
 cvar_t* g_weapon_respawn_time;
 
-// Q2ETweaks game cvars
+// Q2ETweaks game cvar definitions
 cvar_t* g_faster_blasters;
-cvar_t* g_spawn_with_chainfist;
-cvar_t* g_spawn_with_shotgun;
+cvar_t* g_start_with_chainfist;
+cvar_t* g_start_with_shotgun;
 cvar_t* g_rockets_only;
 
 // dm"flags"
@@ -254,13 +254,9 @@ void InitGame()
 
 	// Q2ETweaks init game cvars
 	g_faster_blasters = gi.cvar("g_faster_blasters", "0", CVAR_NOFLAGS);
-	g_spawn_with_chainfist = gi.cvar("g_spawn_with_chainfist", "0", CVAR_NOFLAGS);
-	g_spawn_with_shotgun = gi.cvar("g_spawn_with_shotgun", "0", CVAR_NOFLAGS);
+	g_start_with_chainfist = gi.cvar("g_start_with_chainfist", "0", CVAR_LATCH);
+	g_start_with_shotgun = gi.cvar("g_start_with_shotgun", "0", CVAR_LATCH);
 	g_rockets_only = gi.cvar("g_rockets_only", "0", CVAR_NOFLAGS);
-
-	// Q2ETweaks game cvar processing/dependencies
-	if (g_faster_blasters->integer)
-		sv_maxvelocity = gi.cvar_set("sv_maxvelocity", "5000");
 
 	// [Paril-KEX]
 	g_coop_player_collision = gi.cvar("g_coop_player_collision", "0", CVAR_LATCH);
@@ -367,6 +363,22 @@ void InitGame()
 	g_map_list = gi.cvar("g_map_list", "", CVAR_NOFLAGS);
 	g_map_list_shuffle = gi.cvar("g_map_list_shuffle", "0", CVAR_NOFLAGS);
 	g_lag_compensation = gi.cvar("g_lag_compensation", "1", CVAR_NOFLAGS);
+
+	// Q2ETweaks game cvar processing/dependencies
+	if (g_faster_blasters->integer)
+		gi.cvar_set("sv_maxvelocity", "5000");
+
+	std::string q2tweaks_start_items;
+	if (g_start_with_chainfist->integer)
+		q2tweaks_start_items += "weapon_chainfist;";
+	if (g_start_with_shotgun->integer)
+	{
+		q2tweaks_start_items += "weapon_shotgun;";
+		for (int num_shells = 0; num_shells < 10; num_shells++)
+			q2tweaks_start_items += "ammo_shells;";
+	}
+	if (!q2tweaks_start_items.empty())
+		gi.cvar_set("g_start_items", q2tweaks_start_items.c_str());
 
 	// items
 	InitItems();

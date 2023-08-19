@@ -31,17 +31,17 @@ Makes blaster shots travel faster: 5000 instead of 1500 (blaster) and 1000 (hype
 
 Also adjusts `sv_maxvelocity` from default of 2000 to 5000.
 
-### Spawn With Chainfist
+### Start With Chainfist
 
-server game variable: `g_spawn_with_chainfist`
+server game variable: `g_start_with_chainfist`
 
 Everybody needs a good melee weapon. Give players a chainfist when they spawn!
 
-### Spawn With Shotgun
+### Start With Shotgun
 
-server game variable: `g_spawn_with_shotgun`
+server game variable: `g_start_with_shotgun`
 
-Give newly-spawned players a fighting chance. Give them a shotgun when they spawn!
+Give newly-spawned players a fighting chance. Give them a shotgun and 10 shells when they spawn!
 
 ### Rockets Only
 

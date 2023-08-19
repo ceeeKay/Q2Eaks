@@ -864,22 +864,7 @@ void InitClientPersistant(edict_t *ent, gclient_t *client)
 			// [KEX] give them starting weapons if we're not in instagib game mode
 			// Q2ETweaks do the same for rockets only
 			if (!g_instagib->integer && !g_rockets_only->integer)
-			{
-				// Q2ETweaks start with chainfist
-				// TODO maybe we can accomplish via g_start_items
-				if (g_spawn_with_chainfist->integer)
-					client->pers.inventory[IT_WEAPON_CHAINFIST] = 1;
-
 				client->pers.inventory[IT_WEAPON_BLASTER] = 1;
-
-				// Q2ETweaks start with shotgun
-				// TODO maybe we can accomplish via g_start_items
-				if (g_spawn_with_shotgun->integer)
-				{
-					client->pers.inventory[IT_WEAPON_SHOTGUN] = 1;
-					client->pers.inventory[IT_AMMO_SHELLS] = 25;
-				}
-			}
 
 			// [Kex]
 			// start items!
@@ -2345,10 +2330,10 @@ void ClientBeginDeathmatch(edict_t *ent)
 	std::string q2etweaks_welcome;
 	if (g_faster_blasters->integer)
 		q2etweaks_welcome += "\tFaster Blasters\n";
-	if (g_spawn_with_chainfist->integer)
-		q2etweaks_welcome += "\tSpawn With Chainfist\n";
-	if (g_spawn_with_shotgun->integer)
-		q2etweaks_welcome += "\tSpawn With Shotgun\n";
+	if (g_start_with_chainfist->integer)
+		q2etweaks_welcome += "\tStart With Chainfist\n";
+	if (g_start_with_shotgun->integer)
+		q2etweaks_welcome += "\tStart With Shotgun\n";
 	if (g_rockets_only->integer)
 		q2etweaks_welcome += "\tRockets Only\n";
 	q2etweaks_welcome += " \nQuake Remastered community discord\nquakeqe.com\n";
