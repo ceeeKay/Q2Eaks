@@ -1277,19 +1277,26 @@ void Weapon_RocketLauncher_Fire(edict_t *ent)
 	int	  damage;
 	float damage_radius;
 	int	  radius_damage;
+	int   speed;
 
 	damage = irandom(100, 120);
 	radius_damage = 120;
 	damage_radius = 120;
+	speed = 650;
 	if (is_quad)
 	{
 		damage *= damage_multiplier;
 		radius_damage *= damage_multiplier;
 	}
 
+	// Q2ETweaks make rockets faster (same speed as Quake 1)
+	if (g_faster_rockets)
+		speed = 1000;
+
 	vec3_t start, dir;
 	P_ProjectSource(ent, ent->client->v_angle, { 8, 8, -8 }, start, dir);
-	fire_rocket(ent, start, dir, damage, 650, damage_radius, radius_damage);
+	//fire_rocket(ent, start, dir, damage, 650, damage_radius, radius_damage);
+	fire_rocket(ent, start, dir, damage, speed, damage_radius, radius_damage);
 
 	P_AddWeaponKick(ent, ent->client->v_forward * -2, { -1.f, 0.f, 0.f });
 

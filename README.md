@@ -15,6 +15,12 @@ Makes blaster shots travel faster: 5000 instead of 1500 (blaster) and 1000 (hype
 
 Also adjusts `sv_maxvelocity` from default of 2000 to 5000.
 
+### Faster Rockets
+
+server game variable: `g_faster_rockets`
+
+Makes rockets travel faster: 1000 instead of 650.
+
 ### No Self Damage
 
 server game variable: `g_no_self_damage`
