@@ -106,7 +106,7 @@ cvar_t* g_weapon_respawn_time;
 cvar_t* g_faster_blasters;
 cvar_t* g_start_with_chainfist;
 cvar_t* g_start_with_shotgun;
-cvar_t* g_rockets_only;
+cvar_t* g_only_weapon;
 
 // dm"flags"
 cvar_t* g_no_health;
@@ -256,7 +256,7 @@ void InitGame()
 	g_faster_blasters = gi.cvar("g_faster_blasters", "0", CVAR_NOFLAGS);
 	g_start_with_chainfist = gi.cvar("g_start_with_chainfist", "0", CVAR_LATCH);
 	g_start_with_shotgun = gi.cvar("g_start_with_shotgun", "0", CVAR_LATCH);
-	g_rockets_only = gi.cvar("g_rockets_only", "0", CVAR_NOFLAGS);
+	g_only_weapon = gi.cvar("g_only_weapon", "", CVAR_LATCH);
 
 	// [Paril-KEX]
 	g_coop_player_collision = gi.cvar("g_coop_player_collision", "0", CVAR_LATCH);
@@ -367,7 +367,8 @@ void InitGame()
 	// Q2ETweaks game cvar processing/dependencies
 	if (g_faster_blasters->integer)
 		gi.cvar_set("sv_maxvelocity", "5000");
-
+	if (g_only_weapon)
+		gi.cvar_set("g_infinite_ammo", "1");
 	std::string q2tweaks_start_items;
 	if (g_start_with_chainfist->integer)
 		q2tweaks_start_items += "weapon_chainfist;";

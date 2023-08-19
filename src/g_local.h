@@ -1898,7 +1898,7 @@ extern cvar_t* g_grapple_damage;
 extern cvar_t* g_faster_blasters;
 extern cvar_t* g_start_with_chainfist;
 extern cvar_t* g_start_with_shotgun;
-extern cvar_t* g_rockets_only;
+extern cvar_t* g_only_weapon;
 
 extern cvar_t *sv_airaccelerate;
 

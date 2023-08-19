@@ -426,8 +426,8 @@ void TossClientWeapon(edict_t *self)
 	item = self->client->pers.weapon;
 	if (item && g_instagib->integer)
 		item = nullptr;
-	// Q2ETweaks don't drop rocket launcher in rockets only
-	if (item && g_rockets_only->integer)
+	// Q2ETweaks don't drop your only weapon in only weapon mode!
+	if (item && *g_only_weapon->string)
 		item = nullptr;
 	if (item && !self->client->pers.inventory[self->client->pers.weapon->ammo])
 		item = nullptr;
@@ -861,9 +861,9 @@ void InitClientPersistant(edict_t *ent, gclient_t *client)
 			client->pers.max_ammo[AMMO_TESLA] = 5;
 			// ROGUE
 
-			// [KEX] give them starting weapons if we're not in instagib game mode
-			// Q2ETweaks do the same for rockets only
-			if (!g_instagib->integer && !g_rockets_only->integer)
+			// start with a blaster if we're not in instagib
+			// Q2ETweaks start with a blaster if we're not in only weapon mode
+			if (!g_instagib->integer && !*g_only_weapon->string)
 				client->pers.inventory[IT_WEAPON_BLASTER] = 1;
 
 			// [Kex]
@@ -876,11 +876,15 @@ void InitClientPersistant(edict_t *ent, gclient_t *client)
 				client->pers.inventory[IT_AMMO_SLUGS] = 99;
 			}
 
-			// Q2ETweaks give player rocket launcher and ammo in rockets only
-			else if (g_rockets_only->integer)
+			// Q2ETweaks give player their only weapon
+			if (*g_only_weapon->string)
 			{
-				client->pers.inventory[IT_WEAPON_RLAUNCHER] = 1;
-				client->pers.inventory[IT_AMMO_ROCKETS] = 99;
+				gitem_t *only_weapon = FindItem(g_only_weapon->string);
+				if (only_weapon)
+				{
+					client->pers.inventory[only_weapon->id] = 1;
+					client->pers.inventory[only_weapon->ammo] = only_weapon->quantity;
+				}
 			}
 
 			if (level.start_items && *level.start_items)
@@ -2334,8 +2338,18 @@ void ClientBeginDeathmatch(edict_t *ent)
 		q2etweaks_welcome += "\tStart With Chainfist\n";
 	if (g_start_with_shotgun->integer)
 		q2etweaks_welcome += "\tStart With Shotgun\n";
-	if (g_rockets_only->integer)
-		q2etweaks_welcome += "\tRockets Only\n";
+	if (*g_only_weapon->string) {
+		q2etweaks_welcome += "\tOnly Weapon: ";
+		gitem_t *only_weapon = FindItem(g_only_weapon->string);
+		if (only_weapon)
+			q2etweaks_welcome += only_weapon->use_name;
+		else
+		{
+			q2etweaks_welcome += g_only_weapon->string;
+			q2etweaks_welcome += " (Invalid Weapon Name)";
+		}
+		q2etweaks_welcome += "\n";
+	}
 	q2etweaks_welcome += " \nQuake Remastered community discord\nquakeqe.com\n";
 	gi.LocClient_Print(ent, PRINT_CENTER,
 						"Welcome to Q2ETweaks, {}!\n\nEnabled settings:\n{}",

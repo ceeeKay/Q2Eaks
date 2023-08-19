@@ -27,8 +27,7 @@ bool G_CheckInfiniteAmmo(gitem_t *item)
 	if (item->flags & IF_NO_INFINITE_AMMO)
 		return false;
 
-	// Q2ETweaks add rockets only to infinite ammo mode list
-	return g_infinite_ammo->integer || g_instagib->integer || g_rockets_only->integer;
+	return g_infinite_ammo->integer || g_instagib->integer;
 }
 
 //========
@@ -408,7 +407,11 @@ void NoAmmoWeaponChange(edict_t *ent, bool sound)
 		IT_WEAPON_GLAUNCHER,
 		IT_WEAPON_PROXLAUNCHER,
 		IT_WEAPON_CHAINFIST,
-		IT_WEAPON_BLASTER
+		IT_WEAPON_BLASTER,
+		// Q2ETweaks in g_only_weapon mode we might not have a blaster
+		IT_WEAPON_BFG,
+		IT_WEAPON_GRAPPLE,
+		IT_AMMO_GRENADES
 	};
 
 	for (size_t i = 0; i < q_countof(no_ammo_order); i++)

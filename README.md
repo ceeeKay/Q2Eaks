@@ -43,11 +43,32 @@ server game variable: `g_start_with_shotgun`
 
 Give newly-spawned players a fighting chance. Give them a shotgun and 10 shells when they spawn!
 
-### Rockets Only
+### Only Weapon
 
-server game variable: `g_rockets_only`
+server game variable: `g_only_weapon`
 
-All rockets, all the time.
+Disables weapon and ammo spawns and gives this player the specified weapon with infinite ammo.
+
+valid values: One weapon name, e.g. `"Chaingun"` or `"Rocket Launcher"`
+- `"Grapple"`
+- `"Blaster"`
+- `"Chainfist"`
+- `"Shotgun"`
+- `"Super Shotgun"`
+- `"Machinegun"`
+- `"ETF Rifle"`
+- `"Chaingun"`
+- `"Grenades"`
+- `"Grenade Launcher"`
+- `"Prox Launcher"`
+- `"Rocket Launcher"`
+- `"HyperBlaster"`
+- `"Ionripper"`
+- `"Plasma Beam"`
+- `"Railgun"`
+- `"Phalanx"`
+- `"BFG10K"`
+- `"Disruptor"`
 
 ## Developers
 
