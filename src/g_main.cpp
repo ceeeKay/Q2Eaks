@@ -102,7 +102,7 @@ cvar_t* g_grapple_damage;
 cvar_t* g_coop_health_scaling;
 cvar_t* g_weapon_respawn_time;
 
-// Q2ETweaks
+// Q2ETweaks game cvars
 cvar_t* g_faster_blasters;
 cvar_t* g_spawn_with_chainfist;
 cvar_t* g_spawn_with_shotgun;
@@ -252,13 +252,13 @@ void InitGame()
 	// [Kex] Instagib
 	g_instagib = gi.cvar("g_instagib", "0", CVAR_NOFLAGS);
 
-	// Q2ETweaks
+	// Q2ETweaks init game cvars
 	g_faster_blasters = gi.cvar("g_faster_blasters", "0", CVAR_NOFLAGS);
 	g_spawn_with_chainfist = gi.cvar("g_spawn_with_chainfist", "0", CVAR_NOFLAGS);
 	g_spawn_with_shotgun = gi.cvar("g_spawn_with_shotgun", "0", CVAR_NOFLAGS);
 	g_rockets_only = gi.cvar("g_rockets_only", "0", CVAR_NOFLAGS);
 
-	// Q2ETweaks
+	// Q2ETweaks game cvar processing/dependencies
 	if (g_faster_blasters->integer)
 		sv_maxvelocity = gi.cvar_set("sv_maxvelocity", "5000");
 

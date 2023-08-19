@@ -1894,7 +1894,7 @@ extern cvar_t* g_grapple_fly_speed;
 extern cvar_t* g_grapple_pull_speed;
 extern cvar_t* g_grapple_damage;
 
-// Q2ETweaks
+// Q2ETweaks game cvar externs
 extern cvar_t* g_faster_blasters;
 extern cvar_t* g_spawn_with_chainfist;
 extern cvar_t* g_spawn_with_shotgun;

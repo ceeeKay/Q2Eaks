@@ -1333,7 +1333,7 @@ void Blaster_Fire(edict_t *ent, const vec3_t &g_offset, int damage, bool hyper, 
 	// let the regular blaster projectiles travel a bit faster because it is a completely useless gun
 	int speed = hyper ? 1000 : 1500;
 
-	// Q2ETweaks
+	// Q2ETweaks make blaster projectiles faster
 	if (g_faster_blasters->integer)
 		speed = 5000;
 

@@ -865,13 +865,15 @@ void InitClientPersistant(edict_t *ent, gclient_t *client)
 			// Q2ETweaks do the same for rockets only
 			if (!g_instagib->integer && !g_rockets_only->integer)
 			{
-				// Q2ETweaks
+				// Q2ETweaks start with chainfist
+				// TODO maybe we can accomplish via g_start_items
 				if (g_spawn_with_chainfist->integer)
 					client->pers.inventory[IT_WEAPON_CHAINFIST] = 1;
 
 				client->pers.inventory[IT_WEAPON_BLASTER] = 1;
 
-				// Q2ETweaks
+				// Q2ETweaks start with shotgun
+				// TODO maybe we can accomplish via g_start_items
 				if (g_spawn_with_shotgun->integer)
 				{
 					client->pers.inventory[IT_WEAPON_SHOTGUN] = 1;
@@ -889,7 +891,7 @@ void InitClientPersistant(edict_t *ent, gclient_t *client)
 				client->pers.inventory[IT_AMMO_SLUGS] = 99;
 			}
 
-			// Q2ETweaks
+			// Q2ETweaks give player rocket launcher and ammo in rockets only
 			else if (g_rockets_only->integer)
 			{
 				client->pers.inventory[IT_WEAPON_RLAUNCHER] = 1;
@@ -2336,10 +2338,10 @@ void ClientBeginDeathmatch(edict_t *ent)
 		}
 	}
 
-	// Q2ETweaks print mod-specific welcome messages instead
-	// gi.LocBroadcast_Print(PRINT_HIGH, "$g_entered_game", ent->client->pers.netname);
-	gi.LocBroadcast_Print(PRINT_HIGH, "Welcome to Q2ETweaks, {}!", ent->client->pers.netname);
+	gi.LocBroadcast_Print(PRINT_HIGH, "$g_entered_game", ent->client->pers.netname);
 
+	// Q2ETweaks centerprint a welcome message showing which tweaks are enabled
+	// TODO would be nice to generate this more automatically
 	std::string q2etweaks_welcome;
 	if (g_faster_blasters->integer)
 		q2etweaks_welcome += "\tFaster Blasters\n";
