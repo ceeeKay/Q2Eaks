@@ -1896,6 +1896,7 @@ extern cvar_t* g_grapple_damage;
 
 // Q2ETweaks game cvar externs
 extern cvar_t* g_faster_blasters;
+extern cvar_t* g_no_self_damage;
 extern cvar_t* g_start_with_chainfist;
 extern cvar_t* g_start_with_shotgun;
 extern cvar_t* g_only_weapon;

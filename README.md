@@ -31,6 +31,12 @@ Makes blaster shots travel faster: 5000 instead of 1500 (blaster) and 1000 (hype
 
 Also adjusts `sv_maxvelocity` from default of 2000 to 5000.
 
+### No Self Damage
+
+server game variable: `g_no_self_damage`
+
+Doesn't allow you to hurt yourself.
+
 ### Start With Chainfist
 
 server game variable: `g_start_with_chainfist`

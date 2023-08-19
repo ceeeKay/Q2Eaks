@@ -2334,6 +2334,8 @@ void ClientBeginDeathmatch(edict_t *ent)
 	std::string q2etweaks_welcome;
 	if (g_faster_blasters->integer)
 		q2etweaks_welcome += "\tFaster Blasters\n";
+	if (g_no_self_damage->integer)
+		q2etweaks_welcome += "\tNo Self Damage\n";
 	if (g_start_with_chainfist->integer)
 		q2etweaks_welcome += "\tStart With Chainfist\n";
 	if (g_start_with_shotgun->integer)

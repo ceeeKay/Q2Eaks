@@ -104,6 +104,7 @@ cvar_t* g_weapon_respawn_time;
 
 // Q2ETweaks game cvar definitions
 cvar_t* g_faster_blasters;
+cvar_t* g_no_self_damage;
 cvar_t* g_start_with_chainfist;
 cvar_t* g_start_with_shotgun;
 cvar_t* g_only_weapon;
@@ -254,6 +255,7 @@ void InitGame()
 
 	// Q2ETweaks init game cvars
 	g_faster_blasters = gi.cvar("g_faster_blasters", "0", CVAR_NOFLAGS);
+	g_no_self_damage = gi.cvar("g_no_self_damage", "0", CVAR_NOFLAGS);
 	g_start_with_chainfist = gi.cvar("g_start_with_chainfist", "0", CVAR_LATCH);
 	g_start_with_shotgun = gi.cvar("g_start_with_shotgun", "0", CVAR_LATCH);
 	g_only_weapon = gi.cvar("g_only_weapon", "", CVAR_LATCH);

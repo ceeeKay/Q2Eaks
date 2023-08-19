@@ -562,6 +562,16 @@ void T_Damage(edict_t *targ, edict_t *inflictor, edict_t *attacker, const vec3_t
 		}
 	}
 
+	// Q2ETweaks self damage avoidance
+	// if enabled you can't hurt yourself
+	// knockback still occurs
+	if ((targ == attacker) && !(dflags & DAMAGE_NO_PROTECTION))
+	{
+		// if we're not a nuke & self damage is disabled, just kill the damage
+		if (g_no_self_damage->integer && (mod.id != MOD_NUKE))
+			damage = 0;
+	}
+
 	// ROGUE
 	//  allow the deathmatch game to change values
 	if (deathmatch->integer && gamerules->integer)
