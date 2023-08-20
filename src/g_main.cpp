@@ -379,7 +379,8 @@ void InitGame()
 	if (g_start_with_shotgun->integer)
 	{
 		q2tweaks_start_items += "weapon_shotgun;";
-		for (int num_shells = 0; num_shells < 10; num_shells++)
+		gitem_t *shells = GetItemByIndex(IT_AMMO_SHELLS);
+		for (int num_shells = 0; num_shells < shells->quantity; num_shells++)
 			q2tweaks_start_items += "ammo_shells;";
 	}
 	if (!q2tweaks_start_items.empty())
