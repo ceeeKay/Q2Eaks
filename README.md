@@ -2,10 +2,16 @@
 
 A collection of "tweaks" (small mods) for Quake 2 Enhanced multiplayer servers.
 
-## New Server Game Variables
+## New Server Variables
 
-All tweaks implemented as server game variables, and are off (0) by default and
+All tweaks implemented as server variables, and are off (0) by default and
 need to be set on (1) before starting a map.
+
+### Centerprint Frags
+
+server variable: `sv_centerprint_frags`
+
+Centerprint "You fragged..." and "Fragged by..." messages on killer and victim's screens.
 
 ### Faster Blasters
 
