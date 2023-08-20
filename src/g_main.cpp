@@ -371,7 +371,7 @@ void InitGame()
 	// Q2ETweaks game cvar processing/dependencies
 	if (g_faster_blasters->integer)
 		gi.cvar_set("sv_maxvelocity", "5000");
-	if (g_only_weapon)
+	if (*g_only_weapon->string)
 		gi.cvar_set("g_infinite_ammo", "1");
 	std::string q2tweaks_start_items;
 	if (g_start_with_chainfist->integer)
