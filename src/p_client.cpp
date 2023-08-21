@@ -1654,7 +1654,9 @@ void spectator_respawn(edict_t *ent)
 			gi.LocClient_Print(ent, PRINT_HIGH, "Spectator password incorrect.\n");
 			ent->client->pers.spectator = false;
 			gi.WriteByte(svc_stufftext);
-			gi.WriteString("spectator 0\n");
+			// Q2ETweaks, write to spectator_0 as spectator is an unknown command in remaster
+			//gi.WriteString("spectator 0\n");
+			gi.WriteString("spectator_0 0\n");
 			gi.unicast(ent, true);
 			return;
 		}
@@ -1670,7 +1672,9 @@ void spectator_respawn(edict_t *ent)
 			ent->client->pers.spectator = false;
 			// reset his spectator var
 			gi.WriteByte(svc_stufftext);
-			gi.WriteString("spectator 0\n");
+			// Q2ETweaks, write to spectator_0 as spectator is an unknown command in remaster
+			//gi.WriteString("spectator 0\n");
+			gi.WriteString("spectator_0 0\n");
 			gi.unicast(ent, true);
 			return;
 		}
@@ -1688,7 +1692,9 @@ void spectator_respawn(edict_t *ent)
 			gi.LocClient_Print(ent, PRINT_HIGH, "Password incorrect.\n");
 			ent->client->pers.spectator = true;
 			gi.WriteByte(svc_stufftext);
-			gi.WriteString("spectator 1\n");
+			// Q2ETweaks, write to spectator_0 as spectator is an unknown command in remaster
+			//gi.WriteString("spectator 1\n");
+			gi.WriteString("spectator_0 1\n");
 			gi.unicast(ent, true);
 			return;
 		}
