@@ -1352,7 +1352,7 @@ void SpawnItem(edict_t *ent, gitem_t *item)
 		// Q2ETweaks don't spawn weapons or backpacks in only weapon mode
 		if (*g_only_weapon->string)
 		{
-			if (item->pickup == Pickup_Weapon || item->pickup == Pickup_Pack)
+			if (item->pickup == Pickup_Weapon || item->pickup == Pickup_Pack || (item->flags | IF_AMMO))
 			{
 				G_FreeEdict(ent);
 				return;
