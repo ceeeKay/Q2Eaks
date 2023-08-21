@@ -1074,6 +1074,22 @@ void G_SetStats(edict_t *ent)
 	// ZOID
 	SetCTFStats(ent);
 	// ZOID
+
+	// Q2ETweaks game timer
+	if (sv_game_timer->integer)
+	{
+		// Don't update any more than once/second
+		static int lasttime = 0;
+		int	t = (gtime_t::from_min(timelimit->value) - level.time).seconds<int>();
+		if (t != lasttime)
+		{
+			lasttime = t;
+			char game_timer[64];
+			G_FmtTo(game_timer, "{:02}:{:02}", t / 60, t % 60);
+			ent->client->ps.stats[STAT_GAME_TIMER] = CONFIG_GAME_TIMER;
+			gi.configstring(CONFIG_GAME_TIMER, game_timer);
+		}
+	}
 }
 
 /*

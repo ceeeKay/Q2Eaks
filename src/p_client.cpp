@@ -2345,6 +2345,8 @@ void ClientBeginDeathmatch(edict_t *ent)
 	// Q2ETweaks centerprint a welcome message showing which tweaks are enabled
 	// TODO would be nice to generate this more automatically
 	std::string q2etweaks_welcome;
+	if (sv_game_timer->integer)
+		q2etweaks_welcome += "\tGame Timer\n";
 	if (g_faster_blasters->integer)
 		q2etweaks_welcome += "\tFaster Blasters\n";
 	if (g_faster_rockets->integer)

@@ -1120,6 +1120,31 @@ static void CG_ExecuteLayoutString (const char *s, vrect_t hud_vrect, vrect_t hu
             continue;
         }
 
+        // Q2ETweaks alt color stat string
+        if (!strcmp(token, "stat_string2"))
+        {
+            token = COM_Parse(&s);
+
+            if (!skip_depth)
+            {
+                index = atoi(token);
+                if (index < 0 || index >= MAX_STATS)
+                    cgi.Com_Error("Bad stat_string index");
+                index = ps->stats[index];
+
+                if (cgi.CL_ServerProtocol() <= PROTOCOL_VERSION_3XX)
+                    index = CS_REMAP(index).start / CS_MAX_STRING_LENGTH;
+
+                if (index < 0 || index >= MAX_CONFIGSTRINGS)
+                    cgi.Com_Error("Bad stat_string index");
+                if (!scr_usekfont->integer)
+                    CG_DrawString(x, y, scale, cgi.get_configstring(index));
+                else
+                    cgi.SCR_DrawFontString(cgi.get_configstring(index), x, y - (font_y_offset * scale), scale, alt_color, true, text_align_t::LEFT);
+            }
+            continue;
+        }
+
         if (!strcmp(token, "cstring"))
         {
             token = COM_Parse (&s);

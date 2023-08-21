@@ -68,6 +68,9 @@ enum
 	CONFIG_N64_PHYSICS,
 	CONFIG_HEALTH_BAR_NAME, // active health bar name
 
+	// Q2ETweaks game timer formatted string
+	CONFIG_GAME_TIMER,
+
 	CONFIG_STORY,
 
 	CONFIG_LAST
@@ -255,6 +258,9 @@ enum player_stat_t
 	// [Paril-KEX]
 	STAT_HEALTH_BARS, // two health bar values; 7 bits for value, 1 bit for active
 	// if active, 
+
+	// Q2ETweaks game timer stat string id
+	STAT_GAME_TIMER,
 
 	// don't use; just for verification
     STAT_LAST

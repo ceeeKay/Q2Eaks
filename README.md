@@ -13,6 +13,12 @@ server variable: `sv_centerprint_frags`
 
 Centerprint "You fragged..." and "Fragged by..." messages on killer and victim's screens.
 
+### Game timer
+
+server variable: `sv_game_timer`
+
+Print a game timer in the corner of players' HUDs.
+
 ### Faster Blasters
 
 server game variable: `g_faster_blasters`

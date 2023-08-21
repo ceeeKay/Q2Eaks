@@ -1385,6 +1385,9 @@ static void G_InitStatusbar()
 
 		// chase cam
 		sb.ifstat(STAT_CHASE).xv(0).yb(-68).string("CHASING").xv(64).stat_string(STAT_CHASE).endifstat();
+
+		// Q2ETweaks game timer
+		sb.ifstat(STAT_GAME_TIMER).xv(0).yb(-78).stat_string2(STAT_GAME_TIMER).endifstat();
 	}
 
 	// ---- more shared stuff ----
