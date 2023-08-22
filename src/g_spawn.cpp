@@ -1386,17 +1386,17 @@ static void G_InitStatusbar()
 		// chase cam
 		sb.ifstat(STAT_CHASE).xv(0).yb(-68).string("CHASING").xv(64).stat_string(STAT_CHASE).endifstat();
 
-		// Q2ETweaks speedometer
+		// Q2Eaks speedometer
 		sb.ifstat(STAT_SPEEDOMETER_BAR).yb(-98).speedometer(STAT_SPEEDOMETER_TEXT).endifstat();
 
-		// Q2ETweaks game timer
+		// Q2Eaks game timer
 		sb.ifstat(STAT_GAME_TIMER).xv(0).yb(-78).stat_string2(STAT_GAME_TIMER).endifstat();
 
-		// Q2ETweaks target id view state
+		// Q2Eaks target id view state
 		// TODO move back to xv 112 if we find an image for below
 		sb.ifstat(STAT_CTF_ID_VIEW).xv(128).yb(-78).stat_pname(STAT_CTF_ID_VIEW).endifstat();
 
-		// Q2ETweaks target id view color
+		// Q2Eaks target id view color
 		// TODO populate this with a small image if we can find one
 		sb.ifstat(STAT_CTF_ID_VIEW_COLOR).xv(96).yb(-78).pic(STAT_CTF_ID_VIEW_COLOR).endifstat();
 	}

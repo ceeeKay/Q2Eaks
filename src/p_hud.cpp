@@ -1075,7 +1075,7 @@ void G_SetStats(edict_t *ent)
 	SetCTFStats(ent);
 	// ZOID
 
-	// Q2ETweaks game timer
+	// Q2Eaks game timer
 	if (sv_game_timer->integer)
 	{
 		// Don't update any more than once/second
@@ -1091,7 +1091,7 @@ void G_SetStats(edict_t *ent)
 		}
 	}
 
-	// Q2ETweaks speedometer
+	// Q2Eaks speedometer
 	if (sv_speedometer->integer)
 	{
 		vec3_t ground_velocity = ent->velocity;

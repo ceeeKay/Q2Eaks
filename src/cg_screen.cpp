@@ -1120,7 +1120,7 @@ static void CG_ExecuteLayoutString (const char *s, vrect_t hud_vrect, vrect_t hu
             continue;
         }
 
-        // Q2ETweaks alt color stat string
+        // Q2Eaks alt color stat string
         if (!strcmp(token, "stat_string2"))
         {
             token = COM_Parse(&s);
@@ -1632,7 +1632,7 @@ static void CG_ExecuteLayoutString (const char *s, vrect_t hud_vrect, vrect_t hu
             }
         }
 
-        // Q2ETweaks speedometer drawing
+        // Q2Eaks speedometer drawing
         if (!strcmp(token, "speedometer"))
         {
             if (skip_depth)

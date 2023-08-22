@@ -562,7 +562,7 @@ void T_Damage(edict_t *targ, edict_t *inflictor, edict_t *attacker, const vec3_t
 		}
 	}
 
-	// Q2ETweaks self damage avoidance
+	// Q2Eaks self damage avoidance
 	// if enabled you can't hurt yourself
 	// knockback still occurs
 	if ((targ == attacker) && !(dflags & DAMAGE_NO_PROTECTION))

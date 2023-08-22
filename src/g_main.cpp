@@ -102,7 +102,7 @@ cvar_t* g_grapple_damage;
 cvar_t* g_coop_health_scaling;
 cvar_t* g_weapon_respawn_time;
 
-// Q2ETweaks game cvar definitions
+// Q2Eaks game cvar definitions
 cvar_t* sv_centerprint_frags;
 cvar_t* sv_game_timer;
 cvar_t* sv_speedometer;
@@ -258,7 +258,7 @@ void InitGame()
 	// [Kex] Instagib
 	g_instagib = gi.cvar("g_instagib", "0", CVAR_NOFLAGS);
 
-	// Q2ETweaks init game cvars
+	// Q2Eaks init game cvars
 	sv_centerprint_frags = gi.cvar("sv_centerprint_frags", "0", CVAR_NOFLAGS);
 	sv_game_timer = gi.cvar("sv_game_timer", "0", CVAR_NOFLAGS);
 	sv_speedometer = gi.cvar("sv_speedometer", "0", CVAR_NOFLAGS);
@@ -376,23 +376,23 @@ void InitGame()
 	g_map_list_shuffle = gi.cvar("g_map_list_shuffle", "0", CVAR_NOFLAGS);
 	g_lag_compensation = gi.cvar("g_lag_compensation", "1", CVAR_NOFLAGS);
 
-	// Q2ETweaks game cvar processing/dependencies
+	// Q2Eaks game cvar processing/dependencies
 	if (g_faster_blasters->integer)
 		gi.cvar_set("sv_maxvelocity", "5000");
 	if (*g_only_weapon->string)
 		gi.cvar_set("g_infinite_ammo", "1");
-	std::string q2tweaks_start_items;
+	std::string q2eaks_start_items;
 	if (g_start_with_chainfist->integer)
-		q2tweaks_start_items += "weapon_chainfist;";
+		q2eaks_start_items += "weapon_chainfist;";
 	if (g_start_with_shotgun->integer)
 	{
-		q2tweaks_start_items += "weapon_shotgun;";
+		q2eaks_start_items += "weapon_shotgun;";
 		gitem_t *shells = GetItemByIndex(IT_AMMO_SHELLS);
 		for (int num_shells = 0; num_shells < shells->quantity; num_shells++)
-			q2tweaks_start_items += "ammo_shells;";
+			q2eaks_start_items += "ammo_shells;";
 	}
-	if (!q2tweaks_start_items.empty())
-		gi.cvar_set("g_start_items", q2tweaks_start_items.c_str());
+	if (!q2eaks_start_items.empty())
+		gi.cvar_set("g_start_items", q2eaks_start_items.c_str());
 
 	// items
 	InitItems();

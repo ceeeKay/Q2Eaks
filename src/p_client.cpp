@@ -330,7 +330,7 @@ void ClientObituary(edict_t *self, edict_t *inflictor, edict_t *attacker, mod_t 
 
 		gi.LocBroadcast_Print(PRINT_MEDIUM, base, self->client->pers.netname, attacker->client->pers.netname);
 
-		// Q2ETweaks frag message centerprints on attacker and victim
+		// Q2Eaks frag message centerprints on attacker and victim
 		if (sv_centerprint_frags->integer)
 		{
 			gi.LocClient_Print(attacker, PRINT_CENTER, "You fragged {}", self->client->pers.netname);
@@ -433,7 +433,7 @@ void TossClientWeapon(edict_t *self)
 	item = self->client->pers.weapon;
 	if (item && g_instagib->integer)
 		item = nullptr;
-	// Q2ETweaks don't drop your only weapon in only weapon mode!
+	// Q2Eaks don't drop your only weapon in only weapon mode!
 	if (item && *g_only_weapon->string)
 		item = nullptr;
 	if (item && !self->client->pers.inventory[self->client->pers.weapon->ammo])
@@ -869,7 +869,7 @@ void InitClientPersistant(edict_t *ent, gclient_t *client)
 			// ROGUE
 
 			// start with a blaster if we're not in instagib
-			// Q2ETweaks start with a blaster if we're not in only weapon mode
+			// Q2Eaks start with a blaster if we're not in only weapon mode
 			if (!g_instagib->integer && !*g_only_weapon->string)
 				client->pers.inventory[IT_WEAPON_BLASTER] = 1;
 
@@ -883,7 +883,7 @@ void InitClientPersistant(edict_t *ent, gclient_t *client)
 				client->pers.inventory[IT_AMMO_SLUGS] = 99;
 			}
 
-			// Q2ETweaks give player their only weapon
+			// Q2Eaks give player their only weapon
 			if (*g_only_weapon->string)
 			{
 				gitem_t *only_weapon = FindItem(g_only_weapon->string);
@@ -1654,7 +1654,7 @@ void spectator_respawn(edict_t *ent)
 			gi.LocClient_Print(ent, PRINT_HIGH, "Spectator password incorrect.\n");
 			ent->client->pers.spectator = false;
 			gi.WriteByte(svc_stufftext);
-			// Q2ETweaks, write to spectator_0 as spectator is an unknown command in remaster
+			// Q2Eaks, write to spectator_0 as spectator is an unknown command in remaster
 			//gi.WriteString("spectator 0\n");
 			gi.WriteString("spectator_0 0\n");
 			gi.unicast(ent, true);
@@ -1672,7 +1672,7 @@ void spectator_respawn(edict_t *ent)
 			ent->client->pers.spectator = false;
 			// reset his spectator var
 			gi.WriteByte(svc_stufftext);
-			// Q2ETweaks, write to spectator_0 as spectator is an unknown command in remaster
+			// Q2Eaks, write to spectator_0 as spectator is an unknown command in remaster
 			//gi.WriteString("spectator 0\n");
 			gi.WriteString("spectator_0 0\n");
 			gi.unicast(ent, true);
@@ -1692,7 +1692,7 @@ void spectator_respawn(edict_t *ent)
 			gi.LocClient_Print(ent, PRINT_HIGH, "Password incorrect.\n");
 			ent->client->pers.spectator = true;
 			gi.WriteByte(svc_stufftext);
-			// Q2ETweaks, write to spectator_0 as spectator is an unknown command in remaster
+			// Q2Eaks, write to spectator_0 as spectator is an unknown command in remaster
 			//gi.WriteString("spectator 1\n");
 			gi.WriteString("spectator_0 1\n");
 			gi.unicast(ent, true);
@@ -2342,43 +2342,43 @@ void ClientBeginDeathmatch(edict_t *ent)
 
 	gi.LocBroadcast_Print(PRINT_HIGH, "$g_entered_game", ent->client->pers.netname);
 
-	// Q2ETweaks centerprint a welcome message showing which tweaks are enabled
+	// Q2Eaks centerprint a welcome message showing which tweaks are enabled
 	// TODO would be nice to generate this more automatically
-	std::string q2etweaks_welcome;
+	std::string q2eaks_welcome;
 	if (sv_centerprint_frags->integer)
-		q2etweaks_welcome += "\tCenterprint Frags\n";
+		q2eaks_welcome += "\tCenterprint Frags\n";
 	if (sv_game_timer->integer)
-		q2etweaks_welcome += "\tGame Timer\n";
+		q2eaks_welcome += "\tGame Timer\n";
 	if (sv_speedometer->integer)
-		q2etweaks_welcome += "\tSpeedometer\n";
+		q2eaks_welcome += "\tSpeedometer\n";
 	if (sv_target_id->integer)
-		q2etweaks_welcome += "\tTarget ID\n";
+		q2eaks_welcome += "\tTarget ID\n";
 	if (g_faster_blasters->integer)
-		q2etweaks_welcome += "\tFaster Blasters\n";
+		q2eaks_welcome += "\tFaster Blasters\n";
 	if (g_faster_rockets->integer)
-		q2etweaks_welcome += "\tFaster Rockets\n";
+		q2eaks_welcome += "\tFaster Rockets\n";
 	if (g_no_self_damage->integer)
-		q2etweaks_welcome += "\tNo Self Damage\n";
+		q2eaks_welcome += "\tNo Self Damage\n";
 	if (g_start_with_chainfist->integer)
-		q2etweaks_welcome += "\tStart With Chainfist\n";
+		q2eaks_welcome += "\tStart With Chainfist\n";
 	if (g_start_with_shotgun->integer)
-		q2etweaks_welcome += "\tStart With Shotgun\n";
+		q2eaks_welcome += "\tStart With Shotgun\n";
 	if (*g_only_weapon->string) {
-		q2etweaks_welcome += "\tOnly Weapon: ";
+		q2eaks_welcome += "\tOnly Weapon: ";
 		gitem_t *only_weapon = FindItem(g_only_weapon->string);
 		if (only_weapon)
-			q2etweaks_welcome += only_weapon->use_name;
+			q2eaks_welcome += only_weapon->use_name;
 		else
 		{
-			q2etweaks_welcome += g_only_weapon->string;
-			q2etweaks_welcome += " (Invalid Weapon Name)";
+			q2eaks_welcome += g_only_weapon->string;
+			q2eaks_welcome += " (Invalid Weapon Name)";
 		}
-		q2etweaks_welcome += "\n";
+		q2eaks_welcome += "\n";
 	}
-	q2etweaks_welcome += " \nQuake Remastered community discord\nquakeqe.com\n";
+	q2eaks_welcome += " \nQuake Remastered community discord\nquakeqe.com\n";
 	gi.LocClient_Print(ent, PRINT_CENTER,
-						"Welcome to Q2ETweaks v0.9, {}!\ngithub.com/ceeeKay/Q2ETweaks\n\nEnabled settings:\n{}",
-						ent->client->pers.netname, q2etweaks_welcome.c_str());
+						"Welcome to Q2Eaks v0.10, {}!\ngithub.com/ceeeKay/Q2Eaks\n\nEnabled settings:\n{}",
+						ent->client->pers.netname, q2eaks_welcome.c_str());
 
 	// make sure all view stuff is valid
 	ClientEndServerFrame(ent);

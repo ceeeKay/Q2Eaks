@@ -1894,7 +1894,7 @@ extern cvar_t* g_grapple_fly_speed;
 extern cvar_t* g_grapple_pull_speed;
 extern cvar_t* g_grapple_damage;
 
-// Q2ETweaks game cvar externs
+// Q2Eaks game cvar externs
 extern cvar_t* sv_centerprint_frags;
 extern cvar_t* sv_game_timer;
 extern cvar_t* sv_speedometer;

@@ -408,7 +408,7 @@ void NoAmmoWeaponChange(edict_t *ent, bool sound)
 		IT_WEAPON_PROXLAUNCHER,
 		IT_WEAPON_CHAINFIST,
 		IT_WEAPON_BLASTER,
-		// Q2ETweaks in g_only_weapon mode we might not have a blaster
+		// Q2Eaks in g_only_weapon mode we might not have a blaster
 		IT_WEAPON_BFG,
 		IT_WEAPON_GRAPPLE,
 		IT_AMMO_GRENADES
@@ -1289,7 +1289,7 @@ void Weapon_RocketLauncher_Fire(edict_t *ent)
 		radius_damage *= damage_multiplier;
 	}
 
-	// Q2ETweaks make rockets faster (same speed as Quake 1)
+	// Q2Eaks make rockets faster (same speed as Quake 1)
 	if (g_faster_rockets)
 		speed = 1000;
 
@@ -1343,7 +1343,7 @@ void Blaster_Fire(edict_t *ent, const vec3_t &g_offset, int damage, bool hyper, 
 	// let the regular blaster projectiles travel a bit faster because it is a completely useless gun
 	int speed = hyper ? 1000 : 1500;
 
-	// Q2ETweaks make all blaster projectiles even faster
+	// Q2Eaks make all blaster projectiles even faster
 	if (g_faster_blasters->integer)
 		speed = 5000;
 

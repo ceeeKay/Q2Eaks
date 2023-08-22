@@ -29,7 +29,7 @@ struct statusbar_t
 	inline auto &loc_stat_string(player_stat_t stat) { sb << "loc_stat_string " << stat << ' '; return *this; }
 	inline auto &loc_stat_rstring(player_stat_t stat) { sb << "loc_stat_rstring " << stat << ' '; return *this; }
 	inline auto &stat_string(player_stat_t stat) { sb << "stat_string " << stat << ' '; return *this; }
-	// Q2ETweaks alt color stat string
+	// Q2Eaks alt color stat string
 	inline auto &stat_string2(player_stat_t stat) { sb << "stat_string2 " << stat << ' '; return *this; }
 	inline auto &loc_stat_cstring2(player_stat_t stat) { sb << "loc_stat_cstring2 " << stat << ' '; return *this; }
 	inline auto &string2(const char *str)
@@ -61,7 +61,7 @@ struct statusbar_t
 	inline auto &stat_pname(player_stat_t stat) { sb << "stat_pname " << stat << ' '; return *this; }
 
 	inline auto &health_bars() { sb << "health_bars "; return *this; }
-	// Q2ETweaks speedometer
+	// Q2Eaks speedometer
 	inline auto& speedometer(player_stat_t stat) { sb << "speedometer " << stat << ' '; return *this; }
 	inline auto &story() { sb << "story "; return *this; }
 };

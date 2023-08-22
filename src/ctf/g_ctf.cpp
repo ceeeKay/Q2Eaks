@@ -981,7 +981,7 @@ static void CTFSetIDView(edict_t *ent)
 		dir.normalize();
 		d = forward.dot(dir);
 
-		// Q2ETweaks wrapped original if+continue to allow player id in non-teamplay modes
+		// Q2Eaks wrapped original if+continue to allow player id in non-teamplay modes
 		if (!sv_target_id->integer || G_TeamplayEnabled())
 		{
 			// we have teammate indicators that are better for this

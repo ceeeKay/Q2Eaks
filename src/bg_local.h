@@ -68,7 +68,7 @@ enum
 	CONFIG_N64_PHYSICS,
 	CONFIG_HEALTH_BAR_NAME, // active health bar name
 
-	// Q2ETweaks game timer formatted string
+	// Q2Eaks game timer formatted string
 	CONFIG_GAME_TIMER,
 
 	CONFIG_STORY,
@@ -259,7 +259,7 @@ enum player_stat_t
 	STAT_HEALTH_BARS, // two health bar values; 7 bits for value, 1 bit for active
 	// if active, 
 
-	// Q2ETweaks game timer stat string id
+	// Q2Eaks game timer stat string id
 	STAT_GAME_TIMER,
 	STAT_SPEEDOMETER_BAR,
 	STAT_SPEEDOMETER_TEXT,

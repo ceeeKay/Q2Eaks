@@ -1349,7 +1349,7 @@ void SpawnItem(edict_t *ent, gitem_t *item)
 			if (item->id == IT_WEAPON_BFG)
 				item = GetItemByIndex(IT_WEAPON_DISRUPTOR);
 		}
-		// Q2ETweaks don't spawn weapons or backpacks in only weapon mode
+		// Q2Eaks don't spawn weapons or backpacks in only weapon mode
 		if (*g_only_weapon->string)
 		{
 			if (item->pickup == Pickup_Weapon || item->pickup == Pickup_Pack || (item->flags | IF_AMMO))

@@ -1,6 +1,8 @@
-# QE2Tweaks
+# Q2Eaks
 
-A collection of "tweaks" (small mods) for Quake 2 Enhanced multiplayer servers.
+A collection of "tweaks" (small mods) for the Quake II Remaster/Rerelease (aka Quake 2 Enhanced) multiplayer servers.
+
+(pronounced "Q Tweaks")
 
 ## New Server Variables
 
@@ -93,7 +95,7 @@ valid values: One weapon name in quotes, e.g. `"Chaingun"` or `"Rocket Launcher"
 
 ## Installing
 
-1. Download the latest `game_x64.dll` from https://github.com/ceeeKay/Q2ETweaks/releases
+1. Download the latest `game_x64.dll` from https://github.com/ceeeKay/Q2Eaks/releases
 2. If you want to host online games for cross-play, you need to put `game_x64.dll` into
    `...\SteamLibrary\steamapps\common\Quake 2\rerelease`.
 
@@ -104,9 +106,9 @@ You can use Steam's "Verify integrity of game files" if you have an accident.
 ## Loading
 
 1. Launch Quake II Remaster, open the console (`~`)
-2. Set your Q2ETweaks server game variables as you like (see below).
+2. Set your Q2Eaks server game variables as you like (see below).
 3. Start a game via Multiplayer menu or appropriate console commands.
-4. You can change Q2ETweaks server game variables at any time, but some don't take effect util map restart.
+4. You can change Q2Eaks server game variables at any time, but some don't take effect util map restart.
 
 ## Contributing
 
