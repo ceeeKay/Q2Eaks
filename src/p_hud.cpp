@@ -1094,15 +1094,16 @@ void G_SetStats(edict_t *ent)
 	// Q2ETweaks speedometer
 	if (sv_speedometer->integer)
 	{
-		vec3_t ground_velocity = ent->client->oldvelocity;
+		vec3_t ground_velocity = ent->velocity;
 		ground_velocity.z = 0.0;
 		int ground_speed = ground_velocity.length();
 		byte* speedometer_byte = reinterpret_cast<byte*>(&ent->client->ps.stats[STAT_HEALTH_BARS]);
-		float speedometer_fracton = ((float)ground_speed) / 500.0;
+		float speedometer_fracton = ((float)ground_speed) / 650.0;
 		*speedometer_byte = ((byte)(speedometer_fracton * 0b01111111)) | 0b10000000;
 		char speedometer_value[64];
 		G_FmtTo(speedometer_value, "{}", ground_speed);
-		gi.configstring(CONFIG_HEALTH_BAR_NAME, speedometer_value);
+		// TODO this needs to have a per client variable
+		//gi.configstring(CONFIG_HEALTH_BAR_NAME, speedometer_value);
 	}
 }
 
