@@ -2929,6 +2929,9 @@ struct gclient_t
 	height_fog_t heightfog;
 
 	gtime_t	 last_attacker_time;
+
+	// Q2E store game timer updates (once/second)
+	int last_game_timer_update;
 };
 
 // ==========================================
