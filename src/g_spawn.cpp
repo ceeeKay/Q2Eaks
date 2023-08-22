@@ -1388,6 +1388,9 @@ static void G_InitStatusbar()
 
 		// Q2ETweaks game timer
 		sb.ifstat(STAT_GAME_TIMER).xv(0).yb(-78).stat_string2(STAT_GAME_TIMER).endifstat();
+
+		// Q2ETweaks speedometer
+		sb.ifstat(STAT_HEALTH_BARS).yt(272).health_bars().endifstat();
 	}
 
 	// ---- more shared stuff ----

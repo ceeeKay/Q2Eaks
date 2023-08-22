@@ -19,6 +19,12 @@ server variable: `sv_game_timer`
 
 Print a game timer in the corner of players' HUDs.
 
+### Speedometer
+
+server variable: `sv_speedometer`
+
+Print a speedometer in players' HUDs.
+
 ### Faster Blasters
 
 server game variable: `g_faster_blasters`

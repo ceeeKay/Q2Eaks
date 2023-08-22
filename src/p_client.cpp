@@ -2349,6 +2349,8 @@ void ClientBeginDeathmatch(edict_t *ent)
 		q2etweaks_welcome += "\tCenterprint Frags\n";
 	if (sv_game_timer->integer)
 		q2etweaks_welcome += "\tGame Timer\n";
+	if (sv_speedometer->integer)
+		q2etweaks_welcome += "\tSpeedometer\n";
 	if (g_faster_blasters->integer)
 		q2etweaks_welcome += "\tFaster Blasters\n";
 	if (g_faster_rockets->integer)
