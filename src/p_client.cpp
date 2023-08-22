@@ -2351,6 +2351,8 @@ void ClientBeginDeathmatch(edict_t *ent)
 		q2etweaks_welcome += "\tGame Timer\n";
 	if (sv_speedometer->integer)
 		q2etweaks_welcome += "\tSpeedometer\n";
+	if (sv_target_id->integer)
+		q2etweaks_welcome += "\tTarget ID\n";
 	if (g_faster_blasters->integer)
 		q2etweaks_welcome += "\tFaster Blasters\n";
 	if (g_faster_rockets->integer)

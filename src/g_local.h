@@ -1898,6 +1898,7 @@ extern cvar_t* g_grapple_damage;
 extern cvar_t* sv_centerprint_frags;
 extern cvar_t* sv_game_timer;
 extern cvar_t* sv_speedometer;
+extern cvar_t* sv_target_id;
 extern cvar_t* g_faster_blasters;
 extern cvar_t* g_faster_rockets;
 extern cvar_t* g_no_self_damage;

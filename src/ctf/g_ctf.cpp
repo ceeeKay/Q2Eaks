@@ -981,9 +981,13 @@ static void CTFSetIDView(edict_t *ent)
 		dir.normalize();
 		d = forward.dot(dir);
 
-		// we have teammate indicators that are better for this
-		if (ent->client->resp.ctf_team == who->client->resp.ctf_team)
-			continue;
+		// Q2ETweaks wrapped original if+continue to allow player id in non-teamplay modes
+		if (!sv_target_id->integer || G_TeamplayEnabled())
+		{
+			// we have teammate indicators that are better for this
+			if (ent->client->resp.ctf_team == who->client->resp.ctf_team)
+				continue;
+		}
 
 		if (d > bd && loc_CanSee(ent, who))
 		{

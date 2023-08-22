@@ -106,6 +106,7 @@ cvar_t* g_weapon_respawn_time;
 cvar_t* sv_centerprint_frags;
 cvar_t* sv_game_timer;
 cvar_t* sv_speedometer;
+cvar_t* sv_target_id;
 cvar_t* g_faster_blasters;
 cvar_t* g_faster_rockets;
 cvar_t* g_no_self_damage;
@@ -261,6 +262,7 @@ void InitGame()
 	sv_centerprint_frags = gi.cvar("sv_centerprint_frags", "0", CVAR_NOFLAGS);
 	sv_game_timer = gi.cvar("sv_game_timer", "0", CVAR_NOFLAGS);
 	sv_speedometer = gi.cvar("sv_speedometer", "0", CVAR_NOFLAGS);
+	sv_target_id = gi.cvar("sv_target_id", "0", CVAR_NOFLAGS);
 	g_faster_blasters = gi.cvar("g_faster_blasters", "0", CVAR_NOFLAGS);
 	g_faster_rockets = gi.cvar("g_faster_rockets", "0", CVAR_NOFLAGS);
 	g_no_self_damage = gi.cvar("g_no_self_damage", "0", CVAR_NOFLAGS);

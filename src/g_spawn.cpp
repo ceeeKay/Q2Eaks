@@ -1391,6 +1391,14 @@ static void G_InitStatusbar()
 
 		// Q2ETweaks speedometer
 		sb.ifstat(STAT_HEALTH_BARS).yt(272).health_bars().endifstat();
+
+		// Q2ETweaks target id view state
+		// TODO move back to xv 112 if we find an image for below
+		sb.ifstat(STAT_CTF_ID_VIEW).xv(128).yb(-78).stat_pname(STAT_CTF_ID_VIEW).endifstat();
+
+		// Q2ETweaks target id view color
+		// TODO populate this with a small image if we can find one
+		sb.ifstat(STAT_CTF_ID_VIEW_COLOR).xv(96).yb(-78).pic(STAT_CTF_ID_VIEW_COLOR).endifstat();
 	}
 
 	// ---- more shared stuff ----

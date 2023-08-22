@@ -25,6 +25,12 @@ server variable: `sv_speedometer`
 
 Print a speedometer in players' HUDs.
 
+### Target ID
+
+server variable: `sv_target_id`
+
+Print target ID (player name) in players' HUDs. Players can toggle enable/disable with 'id' command.
+
 ### Faster Blasters
 
 server game variable: `g_faster_blasters`
