@@ -261,6 +261,8 @@ enum player_stat_t
 
 	// Q2ETweaks game timer stat string id
 	STAT_GAME_TIMER,
+	STAT_SPEEDOMETER_BAR,
+	STAT_SPEEDOMETER_TEXT,
 
 	// don't use; just for verification
     STAT_LAST

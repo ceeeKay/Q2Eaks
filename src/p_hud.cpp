@@ -1097,13 +1097,10 @@ void G_SetStats(edict_t *ent)
 		vec3_t ground_velocity = ent->velocity;
 		ground_velocity.z = 0.0;
 		int ground_speed = ground_velocity.length();
-		byte* speedometer_byte = reinterpret_cast<byte*>(&ent->client->ps.stats[STAT_HEALTH_BARS]);
+		ent->client->ps.stats[STAT_SPEEDOMETER_TEXT] = ground_speed;
+		byte* speedometer_byte = reinterpret_cast<byte*>(&ent->client->ps.stats[STAT_SPEEDOMETER_BAR]);
 		float speedometer_fracton = ((float)ground_speed) / 650.0;
 		*speedometer_byte = ((byte)(speedometer_fracton * 0b01111111)) | 0b10000000;
-		char speedometer_value[64];
-		G_FmtTo(speedometer_value, "{}", ground_speed);
-		// TODO this needs to have a per client variable
-		//gi.configstring(CONFIG_HEALTH_BAR_NAME, speedometer_value);
 	}
 }
 

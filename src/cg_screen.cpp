@@ -1632,6 +1632,51 @@ static void CG_ExecuteLayoutString (const char *s, vrect_t hud_vrect, vrect_t hu
             }
         }
 
+        // Q2ETweaks speedometer drawing
+        if (!strcmp(token, "speedometer"))
+        {
+            if (skip_depth)
+                continue;
+
+            token = COM_Parse(&s);
+            value = ps->stats[atoi(token)];
+
+            const byte* stat = reinterpret_cast<const byte*>(&ps->stats[STAT_SPEEDOMETER_BAR]);
+
+            CG_DrawHUDString((G_Fmt("{}", value).data()), (hud_vrect.x + hud_vrect.width / 2 + -160)* scale, y, (320 / 2) * 2 * scale, 0, scale);
+
+            float bar_width = ((hud_vrect.width * scale) - (hud_safe.x * 2)) * 0.50f;
+            float bar_height = 4 * scale;
+
+            y += cgi.SCR_FontLineHeight(scale);
+
+            float x = ((hud_vrect.x + (hud_vrect.width * 0.5f)) * scale) - (bar_width * 0.5f);
+
+            // 2 bars, hardcoded (borrowed from health bars, could reduce to one if needed)
+            for (size_t i = 0; i < 2; i++, stat++)
+            {
+                if (!(*stat & 0b10000000))
+                    continue;
+
+                float percent = (*stat & 0b01111111) / 127.f;
+
+                cgi.SCR_DrawColorPic(x, y, bar_width + scale, bar_height + scale, "_white", rgba_black);
+
+                if (percent > 0 && percent < 0.50) // about speed 0-300
+                    cgi.SCR_DrawColorPic(x, y, bar_width * percent, bar_height, "_white", rgba_green);
+                else if (percent < 0.80) // about speed 300-500
+                    cgi.SCR_DrawColorPic(x, y, bar_width * percent, bar_height, "_white", rgba_yellow);
+                else if (percent < 0.99) // about speed 500-645
+                    cgi.SCR_DrawColorPic(x, y, bar_width * percent, bar_height, "_white", rgba_red);
+                else // about 645
+                    cgi.SCR_DrawColorPic(x, y, bar_width * percent, bar_height, "_white", rgba_cyan);
+                if (percent < 1)
+                    cgi.SCR_DrawColorPic(x + (bar_width * percent), y, bar_width * (1.f - percent), bar_height, "_white", { 80, 80, 80, 255 });
+
+                y += bar_height * 3;
+            }
+        }
+
         if (!strcmp(token, "story"))
         {
             const char *story_str = cgi.get_configstring(CONFIG_STORY);

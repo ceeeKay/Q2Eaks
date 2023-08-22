@@ -61,5 +61,7 @@ struct statusbar_t
 	inline auto &stat_pname(player_stat_t stat) { sb << "stat_pname " << stat << ' '; return *this; }
 
 	inline auto &health_bars() { sb << "health_bars "; return *this; }
+	// Q2ETweaks speedometer
+	inline auto& speedometer(player_stat_t stat) { sb << "speedometer " << stat << ' '; return *this; }
 	inline auto &story() { sb << "story "; return *this; }
 };

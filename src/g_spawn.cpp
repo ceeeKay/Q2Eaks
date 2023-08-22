@@ -1387,7 +1387,7 @@ static void G_InitStatusbar()
 		sb.ifstat(STAT_CHASE).xv(0).yb(-68).string("CHASING").xv(64).stat_string(STAT_CHASE).endifstat();
 
 		// Q2ETweaks speedometer
-		sb.ifstat(STAT_HEALTH_BARS).yb(-98).health_bars().endifstat();
+		sb.ifstat(STAT_SPEEDOMETER_BAR).yb(-98).speedometer(STAT_SPEEDOMETER_TEXT).endifstat();
 
 		// Q2ETweaks game timer
 		sb.ifstat(STAT_GAME_TIMER).xv(0).yb(-78).stat_string2(STAT_GAME_TIMER).endifstat();
