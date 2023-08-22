@@ -2377,7 +2377,7 @@ void ClientBeginDeathmatch(edict_t *ent)
 	}
 	q2etweaks_welcome += " \nQuake Remastered community discord\nquakeqe.com\n";
 	gi.LocClient_Print(ent, PRINT_CENTER,
-						"Welcome to Q2ETweaks v0.8, {}!\ngithub.com/ceeeKay/Q2ETweaks\n\nEnabled settings:\n{}",
+						"Welcome to Q2ETweaks v0.9, {}!\ngithub.com/ceeeKay/Q2ETweaks\n\nEnabled settings:\n{}",
 						ent->client->pers.netname, q2etweaks_welcome.c_str());
 
 	// make sure all view stuff is valid
