@@ -2347,6 +2347,8 @@ void ClientBeginDeathmatch(edict_t *ent)
 	std::string q2eaks_welcome;
 	if (sv_centerprint_frags->integer)
 		q2eaks_welcome += "\tCenterprint Frags\n";
+	if (sv_eyecam->integer)
+		q2eaks_welcome += "\tEyecam\n";
 	if (sv_game_timer->integer)
 		q2eaks_welcome += "\tGame Timer\n";
 	if (sv_speedometer->integer)
@@ -2375,10 +2377,14 @@ void ClientBeginDeathmatch(edict_t *ent)
 		}
 		q2eaks_welcome += "\n";
 	}
-	q2eaks_welcome += " \nQuake Remastered community discord\nquakeqe.com\n";
+	q2eaks_welcome += " \nQuake Remastered community discord\n"
+						"quakeqe.com\n";
 	gi.LocClient_Print(ent, PRINT_CENTER,
-						"Welcome to Q2Eaks v0.10, {}!\ngithub.com/ceeeKay/Q2Eaks\n\nEnabled settings:\n{}",
-						ent->client->pers.netname, q2eaks_welcome.c_str());
+						"Welcome to Q2Eaks v0.11, {}!\n"
+						"github.com/ceeeKay/Q2Eaks\n\n"
+						"Enabled settings:\n{}",
+						ent->client->pers.netname,
+						q2eaks_welcome.c_str());
 
 	// make sure all view stuff is valid
 	ClientEndServerFrame(ent);

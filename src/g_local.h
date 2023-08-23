@@ -1896,6 +1896,7 @@ extern cvar_t* g_grapple_damage;
 
 // Q2Eaks game cvar externs
 extern cvar_t* sv_centerprint_frags;
+extern cvar_t* sv_eyecam;
 extern cvar_t* sv_game_timer;
 extern cvar_t* sv_speedometer;
 extern cvar_t* sv_target_id;

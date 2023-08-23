@@ -29,45 +29,78 @@ void UpdateChaseCam(edict_t *ent)
 	ownerv = targ->s.origin;
 	oldgoal = ent->s.origin;
 
-	ownerv[2] += targ->viewheight;
-
-	angles = targ->client->v_angle;
-	if (angles[PITCH] > 56)
-		angles[PITCH] = 56;
-	AngleVectors(angles, forward, right, nullptr);
-	forward.normalize();
-	o = ownerv + (forward * -30);
-
-	if (o[2] < targ->s.origin[2] + 20)
-		o[2] = targ->s.origin[2] + 20;
-
-	// jump animation lifts
-	if (!targ->groundentity)
-		o[2] += 16;
-
-	trace = gi.traceline(ownerv, o, targ, MASK_SOLID);
-
-	goal = trace.endpos;
-
-	goal += (forward * 2);
-
-	// pad for floors and ceilings
-	o = goal;
-	o[2] += 6;
-	trace = gi.traceline(goal, o, targ, MASK_SOLID);
-	if (trace.fraction < 1)
+	// Q2Eaks eyecam handling
+	if (sv_eyecam->integer)
 	{
+		// mark the chased player as instanced so we can disable their model's visibility
+		targ->svflags |= SVF_INSTANCED;
+
+		// copy everything from ps but pov, stats, or team_id
+		ent->client->ps.pmove = ent->client->chase_target->client->ps.pmove;
+		ent->client->ps.viewangles = ent->client->chase_target->client->ps.viewangles;
+		ent->client->ps.viewoffset = ent->client->chase_target->client->ps.viewoffset;
+		ent->client->ps.kick_angles = ent->client->chase_target->client->ps.kick_angles;
+		ent->client->ps.gunangles = ent->client->chase_target->client->ps.gunangles;
+		ent->client->ps.gunoffset = ent->client->chase_target->client->ps.gunoffset;
+		ent->client->ps.gunindex = ent->client->chase_target->client->ps.gunindex;
+		ent->client->ps.gunskin = ent->client->chase_target->client->ps.gunskin;
+		ent->client->ps.gunframe = ent->client->chase_target->client->ps.gunframe;
+		ent->client->ps.gunrate = ent->client->chase_target->client->ps.gunrate;
+		ent->client->ps.screen_blend = ent->client->chase_target->client->ps.screen_blend;
+		ent->client->ps.damage_blend = ent->client->chase_target->client->ps.damage_blend;
+		ent->client->ps.rdflags = ent->client->chase_target->client->ps.rdflags;
+
+		// unadjusted view and origin handling
+		angles = targ->client->v_angle;
+		AngleVectors(angles, forward, right, nullptr);
+		forward.normalize();
+		o = ownerv;
+		trace = gi.traceline(ownerv, o, targ, MASK_SOLID);
 		goal = trace.endpos;
-		goal[2] -= 6;
 	}
-
-	o = goal;
-	o[2] -= 6;
-	trace = gi.traceline(goal, o, targ, MASK_SOLID);
-	if (trace.fraction < 1)
+	// vanilla chasecam code
+	else
 	{
+		ownerv[2] += targ->viewheight;
+
+		angles = targ->client->v_angle;
+		if (angles[PITCH] > 56)
+			angles[PITCH] = 56;
+		AngleVectors(angles, forward, right, nullptr);
+		forward.normalize();
+		o = ownerv + (forward * -30);
+
+		if (o[2] < targ->s.origin[2] + 20)
+			o[2] = targ->s.origin[2] + 20;
+
+		// jump animation lifts
+		if (!targ->groundentity)
+			o[2] += 16;
+
+		trace = gi.traceline(ownerv, o, targ, MASK_SOLID);
+
 		goal = trace.endpos;
-		goal[2] += 6;
+
+		goal += (forward * 2);
+
+		// pad for floors and ceilings
+		o = goal;
+		o[2] += 6;
+		trace = gi.traceline(goal, o, targ, MASK_SOLID);
+		if (trace.fraction < 1)
+		{
+			goal = trace.endpos;
+			goal[2] -= 6;
+		}
+
+		o = goal;
+		o[2] -= 6;
+		trace = gi.traceline(goal, o, targ, MASK_SOLID);
+		if (trace.fraction < 1)
+		{
+			goal = trace.endpos;
+			goal[2] += 6;
+		}
 	}
 
 	if (targ->deadflag)

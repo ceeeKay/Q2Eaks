@@ -21,6 +21,12 @@ server variable: `sv_game_timer`
 
 Print a game timer in the corner of players' HUDs.
 
+### Eyecam
+
+server variable: `sv_eyecam`
+
+Display eyecam (first person view) instead of chasecam (third person view) when in spectator mode.
+
 ### Speedometer
 
 server variable: `sv_speedometer`
