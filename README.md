@@ -13,9 +13,9 @@ need to be set on (1) before starting a map.
 
 server variable: `sv_eyecam`
 
-Display eyecam (first person view) instead of chasecam (third person view) when in spectator mode.
+Allow eyecam (first person view) when in spectator mode. Use "attack" to cyle between free/chase/eye cam modes and "jump" to cycle between players when in chase/eye cam modes.
 
-Note: To enter spectator mode in deathmatch mode, (CTF/TDM has its own menu option and the `observe` command), use the console command `spectator_0 1`. To re-join the game, use `spectator_0 0`. If you have split-screen players, use `spectator_1` through `spectator_7` in the same manner. Use "attack" to cyle between free/chase/eye cam modes and "jump" to cycle between players when in chase/eye cam modes.
+Note: To enter spectator mode in deathmatch mode, (CTF/TDM has its own menu option and the `observe` command), use the console command `spectator_0 1`. To re-join the game, use `spectator_0 0`. If you have split-screen players, use `spectator_1` through `spectator_7` in the same manner.
 
 Warning: When spectating split-screen local players, `sv_eyecam` will still draw the chased player's model. This is a client engine limitation that can't be changed with a mod. Spectating network players or bots are not affected by this.
 
