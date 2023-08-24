@@ -35,8 +35,7 @@ void UpdateChaseCam(edict_t *ent)
 		// mark the chased player as instanced so we can disable their model's visibility
 		targ->svflags |= SVF_INSTANCED;
 
-		// copy everything from ps but pov, stats, or team_id
-		ent->client->ps.pmove = ent->client->chase_target->client->ps.pmove;
+		// copy everything from ps but pmove, pov, stats, and team_id
 		ent->client->ps.viewangles = ent->client->chase_target->client->ps.viewangles;
 		ent->client->ps.viewoffset = ent->client->chase_target->client->ps.viewoffset;
 		ent->client->ps.kick_angles = ent->client->chase_target->client->ps.kick_angles;
@@ -49,6 +48,14 @@ void UpdateChaseCam(edict_t *ent)
 		ent->client->ps.screen_blend = ent->client->chase_target->client->ps.screen_blend;
 		ent->client->ps.damage_blend = ent->client->chase_target->client->ps.damage_blend;
 		ent->client->ps.rdflags = ent->client->chase_target->client->ps.rdflags;
+
+		// do pmove stuff so view looks right, but not pm_flags
+		ent->client->ps.pmove.origin= ent->client->chase_target->client->ps.pmove.origin;
+		ent->client->ps.pmove.velocity = ent->client->chase_target->client->ps.pmove.velocity;
+		ent->client->ps.pmove.pm_time = ent->client->chase_target->client->ps.pmove.pm_time;
+		ent->client->ps.pmove.gravity = ent->client->chase_target->client->ps.pmove.gravity;
+		ent->client->ps.pmove.delta_angles = ent->client->chase_target->client->ps.pmove.delta_angles;
+		ent->client->ps.pmove.viewheight = ent->client->chase_target->client->ps.pmove.viewheight;
 
 		// unadjusted view and origin handling
 		angles = targ->client->v_angle;
