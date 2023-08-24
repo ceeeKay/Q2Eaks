@@ -330,11 +330,14 @@ void ClientObituary(edict_t *self, edict_t *inflictor, edict_t *attacker, mod_t 
 
 		gi.LocBroadcast_Print(PRINT_MEDIUM, base, self->client->pers.netname, attacker->client->pers.netname);
 
-		// Q2Eaks frag message centerprints on attacker and victim
-		if (sv_centerprint_frags->integer)
+		// Q2Eaks frag message prints on attacker and victim huds
+		if (sv_print_frags->integer)
 		{
-			gi.LocClient_Print(attacker, PRINT_CENTER, "You fragged {}", self->client->pers.netname);
-			gi.LocClient_Print(self, PRINT_CENTER, "\n\n\n\nFragged by {}", attacker->client->pers.netname);
+			// attacker clears after 3 seconds
+			attacker->client->ps.stats[STAT_FRAGGED_NAME] = self - g_edicts;
+			attacker->client->clear_frag_print_time = level.time + 3_sec;
+			// victim message clears on respawn
+			self->client->ps.stats[STAT_FRAGGED_BY_NAME] = attacker - g_edicts;
 		}
 
 		if (G_TeamplayEnabled())
@@ -2345,8 +2348,8 @@ void ClientBeginDeathmatch(edict_t *ent)
 	// Q2Eaks centerprint a welcome message showing which tweaks are enabled
 	// TODO would be nice to generate this more automatically
 	std::string q2eaks_welcome;
-	if (sv_centerprint_frags->integer)
-		q2eaks_welcome += "\tCenterprint Frags\n";
+	if (sv_print_frags->integer)
+		q2eaks_welcome += "\tPrint Frags\n";
 	if (sv_eyecam->integer)
 		q2eaks_welcome += "\tEyecam\n";
 	if (sv_game_timer->integer)

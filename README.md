@@ -9,12 +9,6 @@ A collection of "tweaks" (small mods) for the Quake II Remaster/Rerelease (aka Q
 All tweaks implemented as server variables, and are off (0) by default and
 need to be set on (1) before starting a map.
 
-### Centerprint Frags
-
-server variable: `sv_centerprint_frags`
-
-Centerprint "You fragged..." and "Fragged by..." messages on killer and victim's screens.
-
 ### Game timer
 
 server variable: `sv_game_timer`
@@ -30,6 +24,12 @@ Display eyecam (first person view) instead of chasecam (third person view) when 
 Note: To enter spectator mode in deathmatch mode, (CTF/TDM has its own menu option and the `observe` command), use the console command `spectator_0 1`. To re-join the game, use `spectator_0 0`. If you have split-screen players, use `spectator_1` through `spectator_7` in the same manner.
 
 Warning: When spectating split-screen local players, `sv_eyecam` will still draw the chased player's model. This is a client engine limitation that can't be changed with a mod. Spectating network players or bots are not affected by this.
+
+### Print Frags
+
+server variable: `sv_print_frags`
+
+Print "You fragged..." and "Fragged by..." messages on killer's and victim's HUDs.
 
 ### Speedometer
 

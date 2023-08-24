@@ -259,10 +259,12 @@ enum player_stat_t
 	STAT_HEALTH_BARS, // two health bar values; 7 bits for value, 1 bit for active
 	// if active, 
 
-	// Q2Eaks game timer stat string id
+	// Q2Eaks stats
 	STAT_GAME_TIMER,
 	STAT_SPEEDOMETER_BAR,
 	STAT_SPEEDOMETER_TEXT,
+	STAT_FRAGGED_NAME,
+	STAT_FRAGGED_BY_NAME,
 
 	// don't use; just for verification
     STAT_LAST

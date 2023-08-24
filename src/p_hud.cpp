@@ -1106,6 +1106,13 @@ void G_SetStats(edict_t *ent)
 		float speedometer_fracton = ((float)ground_speed) / 650.0;
 		*speedometer_byte = ((byte)(speedometer_fracton * 0b01111111)) | 0b10000000;
 	}
+
+	// Q2Eaks frag print
+	if (sv_print_frags->integer)
+	{
+		if (ent->client->ps.stats[STAT_FRAGGED_NAME] && ent->client->clear_frag_print_time == level.time)
+			ent->client->ps.stats[STAT_FRAGGED_NAME] = 0;
+	}
 }
 
 /*

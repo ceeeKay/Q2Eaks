@@ -1380,6 +1380,10 @@ static void G_InitStatusbar()
 		// frags
 		sb.xr(-50).yt(2).num(3, STAT_FRAGS);
 
+		// Q2Eaks print frag text
+		sb.ifstat(STAT_FRAGGED_BY_NAME).xv(78).yt(58).string("Fragged by ").xv(168).stat_pname(STAT_FRAGGED_BY_NAME).endifstat();
+		sb.ifstat(STAT_FRAGGED_NAME).xv(77).yt(48).string("You fragged ").xv(168).stat_pname(STAT_FRAGGED_NAME).endifstat();
+
 		// spectator
 		sb.ifstat(STAT_SPECTATOR).xv(0).yb(-58).string2("SPECTATOR MODE").endifstat();
 

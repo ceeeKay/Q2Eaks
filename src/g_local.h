@@ -1895,7 +1895,7 @@ extern cvar_t* g_grapple_pull_speed;
 extern cvar_t* g_grapple_damage;
 
 // Q2Eaks game cvar externs
-extern cvar_t* sv_centerprint_frags;
+extern cvar_t* sv_print_frags;
 extern cvar_t* sv_eyecam;
 extern cvar_t* sv_game_timer;
 extern cvar_t* sv_speedometer;
@@ -2931,8 +2931,10 @@ struct gclient_t
 
 	gtime_t	 last_attacker_time;
 
-	// Q2E store game timer updates (once/second)
+	// Q2Eaks store game timer updates (once/second)
 	int last_game_timer_update;
+	// Q2Eaks time to clear frag print time
+	gtime_t clear_frag_print_time;
 };
 
 // ==========================================
