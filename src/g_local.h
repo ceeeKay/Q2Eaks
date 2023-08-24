@@ -2852,6 +2852,9 @@ struct gclient_t
 	edict_t *chase_target; // player we are chasing
 	bool	 update_chase; // need to update chase info?
 
+	// Q2Eaks are we in eyecam mode?
+	bool use_eyecam;
+
 	//=======
 	// ROGUE
 	gtime_t double_time;

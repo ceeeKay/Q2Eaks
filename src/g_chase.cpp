@@ -30,7 +30,7 @@ void UpdateChaseCam(edict_t *ent)
 	oldgoal = ent->s.origin;
 
 	// Q2Eaks eyecam handling
-	if (sv_eyecam->integer)
+	if (sv_eyecam->integer && ent->client->use_eyecam)
 	{
 		// mark the chased player as instanced so we can disable their model's visibility
 		targ->svflags |= SVF_INSTANCED;

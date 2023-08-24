@@ -3413,8 +3413,22 @@ void ClientThink(edict_t *ent, usercmd_t *ucmd)
 
 			if (client->chase_target)
 			{
-				client->chase_target = nullptr;
-				client->ps.pmove.pm_flags &= ~(PMF_NO_POSITIONAL_PREDICTION | PMF_NO_ANGULAR_PREDICTION);
+				// Q2Eaks add eyecam to freecam<->chasecam cycle
+				if (!client->use_eyecam)
+				{
+					// Q2Eaks chasecam -> eyecam
+					client->use_eyecam = true;
+				}
+				else
+				{
+					// Q2Eaks eyecam -> freecam
+					client->use_eyecam = false;
+					client->ps.gunindex = 0;
+					client->ps.gunskin = 0;
+
+					client->chase_target = nullptr;
+					client->ps.pmove.pm_flags &= ~(PMF_NO_POSITIONAL_PREDICTION | PMF_NO_ANGULAR_PREDICTION);
+				}
 			}
 			else
 				GetChaseTarget(ent);
