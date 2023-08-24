@@ -2345,49 +2345,61 @@ void ClientBeginDeathmatch(edict_t *ent)
 
 	gi.LocBroadcast_Print(PRINT_HIGH, "$g_entered_game", ent->client->pers.netname);
 
+	// Q2Eaks version string
+	const char *Q2EAKS_VERSION = "v0.12";
+
+	// Q2Eaks map cvars to player-friendly strings
+	std::unordered_map<cvar_t*, const char*> Q2EAKS_CVAR_TO_STRING = {
+		{ sv_eyecam, "Eyecam" },
+		{ sv_game_timer, "Game Timer" },
+		{ sv_print_frags, "Print Frags"},
+		{ sv_speedometer, "Speedometer" },
+		{ sv_target_id, "Target ID" },
+		{ g_faster_blasters, "Faster Blasters" },
+		{ g_faster_rockets, "Faster Rockets" },
+		{ g_no_self_damage, "No Self Damage" },
+		{ g_start_with_chainfist, "Start With Chainfist" },
+		{ g_start_with_shotgun, "Start With Shotgun" },
+		{ g_only_weapon, "Only Weapon"},
+	};
+
 	// Q2Eaks centerprint a welcome message showing which tweaks are enabled
-	// TODO would be nice to generate this more automatically
-	std::string q2eaks_welcome;
-	if (sv_print_frags->integer)
-		q2eaks_welcome += "\tPrint Frags\n";
-	if (sv_eyecam->integer)
-		q2eaks_welcome += "\tEyecam\n";
-	if (sv_game_timer->integer)
-		q2eaks_welcome += "\tGame Timer\n";
-	if (sv_speedometer->integer)
-		q2eaks_welcome += "\tSpeedometer\n";
-	if (sv_target_id->integer)
-		q2eaks_welcome += "\tTarget ID\n";
-	if (g_faster_blasters->integer)
-		q2eaks_welcome += "\tFaster Blasters\n";
-	if (g_faster_rockets->integer)
-		q2eaks_welcome += "\tFaster Rockets\n";
-	if (g_no_self_damage->integer)
-		q2eaks_welcome += "\tNo Self Damage\n";
-	if (g_start_with_chainfist->integer)
-		q2eaks_welcome += "\tStart With Chainfist\n";
-	if (g_start_with_shotgun->integer)
-		q2eaks_welcome += "\tStart With Shotgun\n";
-	if (*g_only_weapon->string) {
-		q2eaks_welcome += "\tOnly Weapon: ";
-		gitem_t *only_weapon = FindItem(g_only_weapon->string);
-		if (only_weapon)
-			q2eaks_welcome += only_weapon->use_name;
-		else
+	std::string enabled_cvars;
+	for (auto x : Q2EAKS_CVAR_TO_STRING)
+	{
+		if (x.first->integer)
 		{
-			q2eaks_welcome += g_only_weapon->string;
-			q2eaks_welcome += " (Invalid Weapon Name)";
+			enabled_cvars += "\t";
+			enabled_cvars += x.second;
+			enabled_cvars += "\n";
 		}
-		q2eaks_welcome += "\n";
+		else if (*x.first->string)
+		{
+			// special handling for only weapon
+			if (*g_only_weapon->string) {
+				enabled_cvars += "\t";
+				enabled_cvars += x.second;
+				enabled_cvars += ": ";
+				gitem_t* only_weapon = FindItem(g_only_weapon->string);
+				if (only_weapon)
+					enabled_cvars += only_weapon->use_name;
+				else
+				{
+					enabled_cvars += g_only_weapon->string;
+					enabled_cvars += " (Invalid Weapon Name)";
+				}
+				enabled_cvars += "\n";
+			}
+		}
 	}
-	q2eaks_welcome += " \nQuake Remastered community discord\n"
-						"quakeqe.com\n";
+	enabled_cvars += " \nQuake Remastered community discord\nquakeqe.com";
 	gi.LocClient_Print(ent, PRINT_CENTER,
-						"Welcome to Q2Eaks v0.12, {}!\n"
+						"Welcome to Q2Eaks {}, {}!\n"
 						"github.com/ceeeKay/Q2Eaks\n\n"
 						"Enabled settings:\n{}",
+						Q2EAKS_VERSION,
 						ent->client->pers.netname,
-						q2eaks_welcome.c_str());
+						enabled_cvars.c_str());
 
 	// make sure all view stuff is valid
 	ClientEndServerFrame(ent);
