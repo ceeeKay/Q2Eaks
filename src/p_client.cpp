@@ -2383,7 +2383,7 @@ void ClientBeginDeathmatch(edict_t *ent)
 	q2eaks_welcome += " \nQuake Remastered community discord\n"
 						"quakeqe.com\n";
 	gi.LocClient_Print(ent, PRINT_CENTER,
-						"Welcome to Q2Eaks v0.11, {}!\n"
+						"Welcome to Q2Eaks v0.12, {}!\n"
 						"github.com/ceeeKay/Q2Eaks\n\n"
 						"Enabled settings:\n{}",
 						ent->client->pers.netname,
