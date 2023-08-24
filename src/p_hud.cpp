@@ -1080,7 +1080,11 @@ void G_SetStats(edict_t *ent)
 	{
 		// Don't update any more than once/second
 		static int lasttime = 0;
-		int	t = (gtime_t::from_min(timelimit->value) - level.time).seconds<int>();
+		int	t;
+		if (timelimit->value)
+			t = (gtime_t::from_min(timelimit->value) - level.time).seconds<int>();
+		else
+			t = level.time.seconds<int>();
 		if (t != ent->client->last_game_timer_update)
 		{
 			ent->client->last_game_timer_update = t;
