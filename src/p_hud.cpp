@@ -1149,8 +1149,10 @@ void G_SetSpectatorStats(edict_t *ent)
 		cl->ps.stats[STAT_LAYOUTS] |= LAYOUTS_INVENTORY;
 
 	if (cl->chase_target && cl->chase_target->inuse)
-		cl->ps.stats[STAT_CHASE] = CS_PLAYERSKINS +
-								   (cl->chase_target - g_edicts) - 1;
+		// Q2Eaks fix bugged chasecam name showing name\model/skin\tag
+		//cl->ps.stats[STAT_CHASE] = CS_PLAYERSKINS +
+		//						   (cl->chase_target - g_edicts) - 1;
+		cl->ps.stats[STAT_CHASE] = cl->chase_target - g_edicts;
 	else
 		cl->ps.stats[STAT_CHASE] = 0;
 }

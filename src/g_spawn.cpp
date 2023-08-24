@@ -1384,7 +1384,9 @@ static void G_InitStatusbar()
 		sb.ifstat(STAT_SPECTATOR).xv(0).yb(-58).string2("SPECTATOR MODE").endifstat();
 
 		// chase cam
-		sb.ifstat(STAT_CHASE).xv(0).yb(-68).string("CHASING").xv(64).stat_string(STAT_CHASE).endifstat();
+		// Q2Eaks fix bugged chasecam name showing name\model/skin\tag
+		//sb.ifstat(STAT_CHASE).xv(0).yb(-68).string("CHASING").xv(64).stat_string(STAT_CHASE).endifstat();
+		sb.ifstat(STAT_CHASE).xv(0).yb(-68).string("CHASING").xv(64).stat_pname(STAT_CHASE).endifstat();
 
 		// Q2Eaks speedometer
 		sb.ifstat(STAT_SPEEDOMETER_BAR).yb(-98).speedometer(STAT_SPEEDOMETER_TEXT).endifstat();
