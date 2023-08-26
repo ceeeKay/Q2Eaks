@@ -2374,7 +2374,7 @@ void ClientBeginDeathmatch(edict_t *ent)
 			enabled_cvars += x.second;
 			enabled_cvars += "\n";
 		}
-		else if (*x.first->string)
+		else if (x.first == g_only_weapon)
 		{
 			// special handling for only weapon
 			if (*g_only_weapon->string) {
