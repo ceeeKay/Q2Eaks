@@ -1380,23 +1380,13 @@ static void G_InitStatusbar()
 		// frags
 		sb.xr(-50).yt(2).num(3, STAT_FRAGS);
 
-		// Q2Eaks print frag text
-		sb.ifstat(STAT_FRAGGED_BY_NAME).xv(78).yt(58).string("Fragged by ").xv(168).stat_pname(STAT_FRAGGED_BY_NAME).endifstat();
-		sb.ifstat(STAT_FRAGGED_NAME).xv(77).yt(48).string("You fragged ").xv(168).stat_pname(STAT_FRAGGED_NAME).endifstat();
-
+		// Q2Eaks display this in all deathmatch modes instead (below)
 		// spectator
-		sb.ifstat(STAT_SPECTATOR).xv(0).yb(-58).string2("SPECTATOR MODE").endifstat();
+		//sb.ifstat(STAT_SPECTATOR).xv(0).yb(-58).string2("SPECTATOR MODE").endifstat();
 
+		// Q2Eaks display this in all deathmatch modes instead (below)
 		// chase cam
-		// Q2Eaks fix bugged chasecam name showing name\model/skin\tag
 		//sb.ifstat(STAT_CHASE).xv(0).yb(-68).string("CHASING").xv(64).stat_string(STAT_CHASE).endifstat();
-		sb.ifstat(STAT_CHASE).xv(0).yb(-68).string("CHASING").xv(64).stat_pname(STAT_CHASE).endifstat();
-
-		// Q2Eaks speedometer
-		sb.ifstat(STAT_SPEEDOMETER_BAR).yb(-98).speedometer(STAT_SPEEDOMETER_TEXT).endifstat();
-
-		// Q2Eaks game timer
-		sb.ifstat(STAT_GAME_TIMER).xv(0).yb(-78).stat_string2(STAT_GAME_TIMER).endifstat();
 
 		// Q2Eaks target id view state
 		// TODO move back to xv 112 if we find an image for below
@@ -1410,6 +1400,26 @@ static void G_InitStatusbar()
 	// ---- more shared stuff ----
 	if (deathmatch->integer)
 	{
+		// Q2Eaks print frag text
+		sb.ifstat(STAT_FRAGGED_BY_NAME).xv(78).yt(48).string("Fragged by ").xv(168).stat_pname(STAT_FRAGGED_BY_NAME).endifstat();
+		sb.ifstat(STAT_FRAGGED_NAME).xv(77).yt(38).string("You fragged ").xv(168).stat_pname(STAT_FRAGGED_NAME).endifstat();
+
+		// Q2Eaks moved here
+		// spectator
+		sb.ifstat(STAT_SPECTATOR).xv(0).yb(-58).string2("SPECTATOR MODE").endifstat();
+
+		// Q2Eaks moved here
+		// chase cam
+		//sb.ifstat(STAT_CHASE).xv(0).yb(-68).string("CHASING").xv(64).stat_string(STAT_CHASE).endifstat();
+		// Q2Eaks make chasecam just show name instead of name\model/skin\tag
+		sb.ifstat(STAT_CHASE).xv(0).yb(-68).string("CHASING").xv(64).stat_pname(STAT_CHASE).endifstat();
+
+		// Q2Eaks speedometer
+		sb.ifstat(STAT_SPEEDOMETER_BAR).yb(-98).speedometer(STAT_SPEEDOMETER_TEXT).endifstat();
+
+		// Q2Eaks game timer
+		sb.ifstat(STAT_GAME_TIMER).xv(0).yb(-78).stat_string2(STAT_GAME_TIMER).endifstat();
+
 		// tech
 		sb.ifstat(STAT_CTF_TECH).yb(-137).xr(-26).pic(STAT_CTF_TECH).endifstat();
 	}
