@@ -1345,7 +1345,7 @@ void Blaster_Fire(edict_t *ent, const vec3_t &g_offset, int damage, bool hyper, 
 
 	// Q2Eaks make all blaster projectiles even faster
 	if (g_faster_blasters->integer)
-		speed = 5000;
+		speed = hyper ? 2750 : 5000;
 
 	fire_blaster(ent, start, dir, damage, speed, effect, hyper ? MOD_HYPERBLASTER : MOD_BLASTER);
 
