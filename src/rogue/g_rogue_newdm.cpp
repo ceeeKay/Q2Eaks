@@ -93,6 +93,25 @@ inline item_id_t FindSubstituteItem(edict_t *ent)
 
 		itflags = GetSubstituteItemFlags(i);
 
+		// Q2Eaks respect g_no_<weapon> setting even in g_dm_random_items
+		if ((g_no_bfg->integer && it->id == IT_WEAPON_BFG) ||
+			(g_no_chainfist->integer && it->id == IT_WEAPON_CHAINFIST) ||
+			(g_no_chaingun->integer && it->id == IT_WEAPON_CHAINGUN) ||
+			(g_no_disruptor->integer && it->id == IT_WEAPON_DISRUPTOR) ||
+			(g_no_etf_rifle->integer && it->id == IT_WEAPON_ETF_RIFLE) ||
+			(g_no_glauncher->integer && it->id == IT_WEAPON_GLAUNCHER) ||
+			(g_no_hyperblaster->integer && it->id == IT_WEAPON_HYPERBLASTER) ||
+			(g_no_ionripper->integer && it->id == IT_WEAPON_IONRIPPER) ||
+			(g_no_machinegun->integer && it->id == IT_WEAPON_MACHINEGUN) ||
+			(g_no_phalanx->integer && it->id == IT_WEAPON_PHALANX) ||
+			(g_no_plasmabeam->integer && it->id == IT_WEAPON_PLASMABEAM) ||
+			(g_no_proxlauncher->integer && it->id == IT_WEAPON_PROXLAUNCHER) ||
+			(g_no_railgun->integer && it->id == IT_WEAPON_RAILGUN) ||
+			(g_no_rlauncher->integer && it->id == IT_WEAPON_RLAUNCHER) ||
+			(g_no_shotgun->integer && it->id == IT_WEAPON_SHOTGUN) ||
+			(g_no_sshotgun->integer && it->id == IT_WEAPON_SSHOTGUN))
+				continue;
+
 		// don't respawn spheres if they're dmflag disabled.
 		if (g_no_spheres->integer)
 		{

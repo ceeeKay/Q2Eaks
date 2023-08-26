@@ -1364,6 +1364,27 @@ void SpawnItem(edict_t *ent, gitem_t *item)
 				return;
 			}
 		}
+		//// Q2Eaks no_<weapon> cvar handling
+		if ((g_no_bfg->integer && item->id == IT_WEAPON_BFG) ||
+			(g_no_chainfist->integer && item->id == IT_WEAPON_CHAINFIST) ||
+			(g_no_chaingun->integer && item->id == IT_WEAPON_CHAINGUN) ||
+			(g_no_disruptor->integer && item->id == IT_WEAPON_DISRUPTOR) ||
+			(g_no_etf_rifle->integer && item->id == IT_WEAPON_ETF_RIFLE) ||
+			(g_no_glauncher->integer && item->id == IT_WEAPON_GLAUNCHER) ||
+			(g_no_hyperblaster->integer && item->id == IT_WEAPON_HYPERBLASTER) ||
+			(g_no_ionripper->integer && item->id == IT_WEAPON_IONRIPPER) ||
+			(g_no_machinegun->integer && item->id == IT_WEAPON_MACHINEGUN) ||
+			(g_no_phalanx->integer && item->id == IT_WEAPON_PHALANX) ||
+			(g_no_plasmabeam->integer && item->id == IT_WEAPON_PLASMABEAM) ||
+			(g_no_proxlauncher->integer && item->id == IT_WEAPON_PROXLAUNCHER) ||
+			(g_no_railgun->integer && item->id == IT_WEAPON_RAILGUN) ||
+			(g_no_rlauncher->integer && item->id == IT_WEAPON_RLAUNCHER) ||
+			(g_no_shotgun->integer && item->id == IT_WEAPON_SHOTGUN) ||
+			(g_no_sshotgun->integer && item->id == IT_WEAPON_SSHOTGUN))
+		{
+			G_FreeEdict(ent);
+			return;
+		}
 
 		//==========
 		// ROGUE

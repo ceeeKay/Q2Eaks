@@ -2362,6 +2362,22 @@ void ClientBeginDeathmatch(edict_t *ent)
 		{ g_start_with_chainfist, "Start With Chainfist" },
 		{ g_start_with_shotgun, "Start With Shotgun" },
 		{ g_only_weapon, "Only Weapon"},
+		{ g_no_bfg, "No BFG 10k"},
+		{ g_no_chainfist, "No Chainfist"},
+		{ g_no_chaingun, "No Chaingun"},
+		{ g_no_disruptor, "No Disruptor"},
+		{ g_no_etf_rifle, "No ETF Rifle"},
+		{ g_no_glauncher, "No Grenade Launcher"},
+		{ g_no_hyperblaster, "No Hyperblaster"},
+		{ g_no_ionripper, "No Ionripper"},
+		{ g_no_machinegun, "No Machinegun"},
+		{ g_no_phalanx, "No Phalanx"},
+		{ g_no_plasmabeam, "No Plasmabeam"},
+		{ g_no_proxlauncher, "No Proximity Launcher"},
+		{ g_no_railgun, "No Railgun"},
+		{ g_no_rlauncher, "No Rocket Launcher"},
+		{ g_no_shotgun, "No Shotgun"},
+		{ g_no_sshotgun, "No Super Shotgun"},
 	};
 
 	// Q2Eaks centerprint a welcome message showing which tweaks are enabled
