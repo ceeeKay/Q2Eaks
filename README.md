@@ -43,13 +43,26 @@ server variable: `sv_target_id`
 
 Print target ID (player name) in players' HUDs. Players can toggle enable/disable with 'id' command.
 
+### Faster Projectiles
+
+server game variable: `g_faster_projectiles`
+
+Enables faster blaster shots, flechettes, and rockets in one cvar.
+
 ### Faster Blasters
 
 server game variable: `g_faster_blasters`
 
-Makes blaster shots travel faster: 5000 instead of 1500 (blaster) and 1000 (hyperblaster).
+Makes blaster shots travel faster: 5000 instead of 1500.
+Makes hyperblaster shots travel faster: 2750 instead of 1000.
 
 Also adjusts `sv_maxvelocity` from default of 2000 to 5000.
+
+### Faster Flechettes
+
+server game variable: `g_faster_flechettes`
+
+Makes flechettes fired by the ETF rifle travel faster: 2750 instead of 1150.
 
 ### Faster Rockets
 

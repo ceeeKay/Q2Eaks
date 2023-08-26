@@ -315,7 +315,14 @@ void weapon_etf_rifle_fire(edict_t *ent)
 
 	vec3_t start, dir;
 	P_ProjectSource(ent, ent->client->v_angle + kick_angles, offset, start, dir);
-	fire_flechette(ent, start, dir, damage, 1150, kick);
+	// Q2Eaks make this a local variable so we can adjust it
+	int speed = 1150;
+
+	// Q2Eaks make all blaster projectiles even faster
+	if (g_faster_flechettes->integer)
+		speed = 2750;
+
+	fire_flechette(ent, start, dir, damage, speed, kick);
 	Weapon_PowerupSound(ent);
 
 	// send muzzle flash

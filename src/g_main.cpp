@@ -109,6 +109,8 @@ cvar_t* sv_print_frags;
 cvar_t* sv_speedometer;
 cvar_t* sv_target_id;
 cvar_t* g_faster_blasters;
+cvar_t* g_faster_flechettes;
+cvar_t* g_faster_projectiles;
 cvar_t* g_faster_rockets;
 cvar_t* g_no_self_damage;
 cvar_t* g_start_with_chainfist;
@@ -266,6 +268,8 @@ void InitGame()
 	sv_speedometer = gi.cvar("sv_speedometer", "0", CVAR_NOFLAGS);
 	sv_target_id = gi.cvar("sv_target_id", "0", CVAR_NOFLAGS);
 	g_faster_blasters = gi.cvar("g_faster_blasters", "0", CVAR_NOFLAGS);
+	g_faster_flechettes = gi.cvar("g_faster_flechettes", "0", CVAR_NOFLAGS);
+	g_faster_projectiles = gi.cvar("g_faster_projectiles", "0", CVAR_LATCH);
 	g_faster_rockets = gi.cvar("g_faster_rockets", "0", CVAR_NOFLAGS);
 	g_no_self_damage = gi.cvar("g_no_self_damage", "0", CVAR_NOFLAGS);
 	g_start_with_chainfist = gi.cvar("g_start_with_chainfist", "0", CVAR_LATCH);
@@ -379,7 +383,13 @@ void InitGame()
 	g_lag_compensation = gi.cvar("g_lag_compensation", "1", CVAR_NOFLAGS);
 
 	// Q2Eaks game cvar processing/dependencies
-	if (g_faster_blasters->integer)
+	if (g_faster_projectiles->integer)
+	{
+		gi.cvar_set("g_faster_blasters", "1");
+		gi.cvar_set("g_faster_flechettes", "1");
+		gi.cvar_set("g_faster_rockets", "1");
+	}
+	if (g_faster_blasters->integer || g_faster_flechettes->integer)
 		gi.cvar_set("sv_maxvelocity", "5000");
 	if (*g_only_weapon->string)
 		gi.cvar_set("g_infinite_ammo", "1");

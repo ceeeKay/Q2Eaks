@@ -1901,6 +1901,8 @@ extern cvar_t* sv_print_frags;
 extern cvar_t* sv_speedometer;
 extern cvar_t* sv_target_id;
 extern cvar_t* g_faster_blasters;
+extern cvar_t* g_faster_flechettes;
+extern cvar_t* g_faster_projectiles;
 extern cvar_t* g_faster_rockets;
 extern cvar_t* g_no_self_damage;
 extern cvar_t* g_start_with_chainfist;

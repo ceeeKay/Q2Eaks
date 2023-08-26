@@ -2356,6 +2356,7 @@ void ClientBeginDeathmatch(edict_t *ent)
 		{ sv_speedometer, "Speedometer" },
 		{ sv_target_id, "Target ID" },
 		{ g_faster_blasters, "Faster Blasters" },
+		{ g_faster_flechettes, "Faster Flechettes" },
 		{ g_faster_rockets, "Faster Rockets" },
 		{ g_no_self_damage, "No Self Damage" },
 		{ g_start_with_chainfist, "Start With Chainfist" },
