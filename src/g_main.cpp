@@ -103,6 +103,7 @@ cvar_t* g_coop_health_scaling;
 cvar_t* g_weapon_respawn_time;
 
 // Q2Eaks game cvar definitions
+cvar_t* sv_auto_bhop;
 cvar_t* sv_eyecam;
 cvar_t* sv_game_timer;
 cvar_t* sv_print_frags;
@@ -278,8 +279,9 @@ void InitGame()
 	g_instagib = gi.cvar("g_instagib", "0", CVAR_NOFLAGS);
 
 	// Q2Eaks init game cvars
-	sv_game_timer = gi.cvar("sv_game_timer", "0", CVAR_NOFLAGS);
+	sv_auto_bhop = gi.cvar("sv_auto_bhop", "0", CVAR_NOFLAGS);
 	sv_eyecam = gi.cvar("sv_eyecam", "0", CVAR_NOFLAGS);
+	sv_game_timer = gi.cvar("sv_game_timer", "0", CVAR_NOFLAGS);
 	sv_print_frags = gi.cvar("sv_print_frags", "0", CVAR_NOFLAGS);
 	sv_speedometer = gi.cvar("sv_speedometer", "0", CVAR_NOFLAGS);
 	sv_target_id = gi.cvar("sv_target_id", "0", CVAR_NOFLAGS);

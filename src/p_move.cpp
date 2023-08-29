@@ -1032,6 +1032,9 @@ void PM_CatagorizePosition()
 	PM_GetWaterLevel(pml.origin, pm->waterlevel, pm->watertype);
 }
 
+// Q2Eaks bring in just this cvar since we need to check it here
+extern cvar_t* sv_auto_bhop;
+
 /*
 =============
 PM_CheckJump
@@ -1050,9 +1053,13 @@ void PM_CheckJump()
 		return;
 	}
 
-	// must wait for jump to be released
-	if (pm->s.pm_flags & PMF_JUMP_HELD)
-		return;
+	// Q2Eaks allow this check to be skipped
+	if (!sv_auto_bhop->integer)
+	{
+		// must wait for jump to be released
+		if (pm->s.pm_flags & PMF_JUMP_HELD)
+			return;
+	}
 
 	if (pm->s.pm_type == PM_DEAD)
 		return;

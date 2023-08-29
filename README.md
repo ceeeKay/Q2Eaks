@@ -9,6 +9,12 @@ A collection of "tweaks" (small mods) for the Quake II Remaster/Rerelease (aka Q
 All tweaks implemented as server variables, and are off (0) by default and
 need to be set on (1) before starting a map.
 
+### Auto Bunnyhop
+
+server variable: `sv_auto_bhop`
+
+Allow players to hold jump button to jump continuously instead of having to release/re-hold it between every jump.
+
 ### Eyecam
 
 server variable: `sv_eyecam`

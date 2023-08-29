@@ -2346,10 +2346,11 @@ void ClientBeginDeathmatch(edict_t *ent)
 	gi.LocBroadcast_Print(PRINT_HIGH, "$g_entered_game", ent->client->pers.netname);
 
 	// Q2Eaks version string
-	const char *Q2EAKS_VERSION = "v0.13";
+	const char *Q2EAKS_VERSION = "v0.14";
 
 	// Q2Eaks map cvars to player-friendly strings
 	std::unordered_map<cvar_t*, const char*> Q2EAKS_CVAR_TO_STRING = {
+		{ sv_auto_bhop, "Auto Bunnyhop" },
 		{ sv_eyecam, "Eyecam" },
 		{ sv_game_timer, "Game Timer" },
 		{ sv_print_frags, "Print Frags"},
