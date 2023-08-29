@@ -1364,7 +1364,7 @@ void SpawnItem(edict_t *ent, gitem_t *item)
 				return;
 			}
 		}
-		//// Q2Eaks no_<weapon> cvar handling
+		// Q2Eaks no_<weapon> cvar handling
 		if ((g_no_bfg->integer && item->id == IT_WEAPON_BFG) ||
 			(g_no_chainfist->integer && item->id == IT_WEAPON_CHAINFIST) ||
 			(g_no_chaingun->integer && item->id == IT_WEAPON_CHAINGUN) ||
