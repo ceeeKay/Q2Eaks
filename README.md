@@ -4,6 +4,18 @@ A collection of "tweaks" (small mods) for the Quake II Remaster/Rerelease (aka Q
 
 (pronounced "Q Tweaks")
 
+See below for information on [installing](#installing), [loading](#loading), and [contributing](#contributing) to Q2Eaks. You can set the mod's [server variables](#new-server-variables) via console commands, `exec`ing a script, or using the [admin menu](#admin-menu).
+
+## Admin Menu
+
+To open the admin menu, use the console to set a password of "example" with `admin_password example`. Then enter admin mode with `admin example`.
+
+Alternatively you can start a vote for admin rights, but be aware that console players don't seem to have a yes/no vote binding.
+
+Becoming admin (above), or entering `admin` in the console (no password required after the first command) will open the Admin menu and you can use `[`, `]`, and `enter` (default keybindings) for next/previous/select.
+
+Navigate to `Q2Eaks` and you can toggle most mod settings on and off visually.
+
 ## New Server Variables
 
 All tweaks implemented as server variables, and are off (0) by default and

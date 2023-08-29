@@ -3561,12 +3561,271 @@ void CTFAdmin_Cancel(edict_t *ent, pmenuhnd_t *p)
 	PMenu_Close(ent);
 }
 
+// Q2Eaks struct for mod admin settings
+struct q2eaks_admin_settings_t
+{
+	bool sv_auto_bhop;
+	bool sv_eyecam;
+	bool sv_game_timer;
+	bool sv_print_frags;
+	bool sv_speedometer;
+	bool sv_target_id;
+	bool g_faster_blasters;
+	bool g_faster_flechettes;
+	bool g_faster_rockets;
+	bool g_no_self_damage;
+	bool g_start_with_chainfist;
+	bool g_start_with_shotgun;
+};
+
+// Q2Eaks forward declaration
+void Q2EaksAdmin_UpdateSettings(edict_t* ent, pmenuhnd_t* setmenu);
+
+// Q2Eaks apply admin settings
+void Q2EaksAdmin_SettingsApply(edict_t* ent, pmenuhnd_t* p)
+{
+	q2eaks_admin_settings_t* settings = (q2eaks_admin_settings_t*)p->arg;
+
+	if (settings->sv_auto_bhop != !!sv_auto_bhop->integer)
+	{
+		gi.LocBroadcast_Print(PRINT_HIGH, "{} turned {} Auto Bunnyhop.\n",
+			ent->client->pers.netname, settings->sv_auto_bhop ? "on" : "off");
+		gi.cvar_set("sv_auto_bhop", settings->sv_auto_bhop ? "1" : "0");
+	}
+	if (settings->sv_eyecam != !!sv_eyecam->integer)
+	{
+		gi.LocBroadcast_Print(PRINT_HIGH, "{} turned {} Eyecam.\n",
+			ent->client->pers.netname, settings->sv_eyecam ? "on" : "off");
+		gi.cvar_set("sv_eyecam", settings->sv_eyecam ? "1" : "0");
+	}
+	if (settings->sv_game_timer != !!sv_game_timer->integer)
+	{
+		gi.LocBroadcast_Print(PRINT_HIGH, "{} turned {} Game Timer.\n",
+			ent->client->pers.netname, settings->sv_game_timer ? "on" : "off");
+		gi.cvar_set("sv_game_timer", settings->sv_game_timer ? "1" : "0");
+	}
+	if (settings->sv_print_frags != !!sv_print_frags->integer)
+	{
+		gi.LocBroadcast_Print(PRINT_HIGH, "{} turned {} Print Frag.\n",
+			ent->client->pers.netname, settings->sv_print_frags ? "on" : "off");
+		gi.cvar_set("sv_print_frags", settings->sv_print_frags ? "1" : "0");
+	}
+	if (settings->sv_speedometer != !!sv_speedometer->integer)
+	{
+		gi.LocBroadcast_Print(PRINT_HIGH, "{} turned {} Speedometer.\n",
+			ent->client->pers.netname, settings->sv_speedometer ? "on" : "off");
+		gi.cvar_set("sv_speedometer", settings->sv_speedometer ? "1" : "0");
+	}
+	if (settings->sv_target_id != !!sv_target_id->integer)
+	{
+		gi.LocBroadcast_Print(PRINT_HIGH, "{} turned {} Target ID.\n",
+			ent->client->pers.netname, settings->sv_target_id ? "on" : "off");
+		gi.cvar_set("sv_target_id", settings->sv_target_id ? "1" : "0");
+	}
+	if (settings->g_faster_blasters != !!g_faster_blasters->integer)
+	{
+		gi.LocBroadcast_Print(PRINT_HIGH, "{} turned {} Faster Blasters.\n",
+			ent->client->pers.netname, settings->g_faster_blasters ? "on" : "off");
+		gi.cvar_set("g_faster_blasters", settings->g_faster_blasters ? "1" : "0");
+	}
+	if (settings->g_faster_flechettes != !!g_faster_flechettes->integer)
+	{
+		gi.LocBroadcast_Print(PRINT_HIGH, "{} turned {} Faster Flechettes.\n",
+			ent->client->pers.netname, settings->g_faster_flechettes ? "on" : "off");
+		gi.cvar_set("g_faster_flechettes", settings->g_faster_flechettes ? "1" : "0");
+	}
+	if (settings->g_faster_rockets != !!g_faster_rockets->integer)
+	{
+		gi.LocBroadcast_Print(PRINT_HIGH, "{} turned {} Faster Rockets.\n",
+			ent->client->pers.netname, settings->g_faster_rockets ? "on" : "off");
+		gi.cvar_set("g_faster_rockets", settings->g_faster_rockets ? "1" : "0");
+	}
+	if (settings->g_no_self_damage != !!g_no_self_damage->integer)
+	{
+		gi.LocBroadcast_Print(PRINT_HIGH, "{} turned {} No Self Damage.\n",
+			ent->client->pers.netname, settings->g_no_self_damage ? "on" : "off");
+		gi.cvar_set("g_no_self_damage", settings->g_no_self_damage ? "1" : "0");
+	}
+	if (settings->g_start_with_chainfist != !!g_start_with_chainfist->integer)
+	{
+		gi.LocBroadcast_Print(PRINT_HIGH, "{} turned {} Start With Chainfist.\n",
+			ent->client->pers.netname, settings->g_start_with_chainfist ? "on" : "off");
+		gi.cvar_set("g_start_with_chainfist", settings->g_start_with_chainfist ? "1" : "0");
+	}
+	if (settings->g_start_with_shotgun != !!g_start_with_shotgun->integer)
+	{
+		gi.LocBroadcast_Print(PRINT_HIGH, "{} turned {} Start With Shotgun.\n",
+			ent->client->pers.netname, settings->g_start_with_shotgun ? "on" : "off");
+		gi.cvar_set("g_start_with_shotgun", settings->g_start_with_shotgun ? "1" : "0");
+	}
+
+	PMenu_Close(ent);
+	CTFOpenAdminMenu(ent);
+}
+
+// Q2Eaks functions for changing settings from admin menu
+void Q2EaksAdmin_Change_sv_auto_bhop(edict_t* ent, pmenuhnd_t* p)
+{
+	q2eaks_admin_settings_t* settings = (q2eaks_admin_settings_t*)p->arg;
+	settings->sv_auto_bhop = !settings->sv_auto_bhop;
+	Q2EaksAdmin_UpdateSettings(ent, p);
+}
+void Q2EaksAdmin_Change_sv_eyecam(edict_t* ent, pmenuhnd_t* p)
+{
+	q2eaks_admin_settings_t* settings = (q2eaks_admin_settings_t*)p->arg;
+	settings->sv_eyecam = !settings->sv_eyecam;
+	Q2EaksAdmin_UpdateSettings(ent, p);
+}
+void Q2EaksAdmin_Change_sv_game_timer(edict_t* ent, pmenuhnd_t* p)
+{
+	q2eaks_admin_settings_t* settings = (q2eaks_admin_settings_t*)p->arg;
+	settings->sv_game_timer = !settings->sv_game_timer;
+	Q2EaksAdmin_UpdateSettings(ent, p);
+}
+void Q2EaksAdmin_Change_sv_print_frags(edict_t* ent, pmenuhnd_t* p)
+{
+	q2eaks_admin_settings_t* settings = (q2eaks_admin_settings_t*)p->arg;
+	settings->sv_print_frags = !settings->sv_print_frags;
+	Q2EaksAdmin_UpdateSettings(ent, p);
+}
+void Q2EaksAdmin_Change_sv_speedometer(edict_t* ent, pmenuhnd_t* p)
+{
+	q2eaks_admin_settings_t* settings = (q2eaks_admin_settings_t*)p->arg;
+	settings->sv_speedometer = !settings->sv_speedometer;
+	Q2EaksAdmin_UpdateSettings(ent, p);
+}
+void Q2EaksAdmin_Change_sv_target_id(edict_t* ent, pmenuhnd_t* p)
+{
+	q2eaks_admin_settings_t* settings = (q2eaks_admin_settings_t*)p->arg;
+	settings->sv_target_id = !settings->sv_target_id;
+	Q2EaksAdmin_UpdateSettings(ent, p);
+}
+void Q2EaksAdmin_Change_g_faster_blasters(edict_t* ent, pmenuhnd_t* p)
+{
+	q2eaks_admin_settings_t* settings = (q2eaks_admin_settings_t*)p->arg;
+	settings->g_faster_blasters = !settings->g_faster_blasters;
+	Q2EaksAdmin_UpdateSettings(ent, p);
+}
+void Q2EaksAdmin_Change_g_faster_flechettes(edict_t* ent, pmenuhnd_t* p)
+{
+	q2eaks_admin_settings_t* settings = (q2eaks_admin_settings_t*)p->arg;
+	settings->g_faster_flechettes = !settings->g_faster_flechettes;
+	Q2EaksAdmin_UpdateSettings(ent, p);
+}
+void Q2EaksAdmin_Change_g_faster_rockets(edict_t* ent, pmenuhnd_t* p)
+{
+	q2eaks_admin_settings_t* settings = (q2eaks_admin_settings_t*)p->arg;
+	settings->g_faster_rockets = !settings->g_faster_rockets;
+	Q2EaksAdmin_UpdateSettings(ent, p);
+}
+void Q2EaksAdmin_Change_g_no_self_damage(edict_t* ent, pmenuhnd_t* p)
+{
+	q2eaks_admin_settings_t* settings = (q2eaks_admin_settings_t*)p->arg;
+	settings->g_no_self_damage = !settings->g_no_self_damage;
+	Q2EaksAdmin_UpdateSettings(ent, p);
+}
+void Q2EaksAdmin_Change_g_start_with_chainfist(edict_t* ent, pmenuhnd_t* p)
+{
+	q2eaks_admin_settings_t* settings = (q2eaks_admin_settings_t*)p->arg;
+	settings->g_start_with_chainfist = !settings->g_start_with_chainfist;
+	Q2EaksAdmin_UpdateSettings(ent, p);
+}
+void Q2EaksAdmin_Change_g_start_with_shotgun(edict_t* ent, pmenuhnd_t* p)
+{
+	q2eaks_admin_settings_t* settings = (q2eaks_admin_settings_t*)p->arg;
+	settings->g_start_with_shotgun = !settings->g_start_with_shotgun;
+	Q2EaksAdmin_UpdateSettings(ent, p);
+}
+
+// Q2Eaks main admin menu update function
+void Q2EaksAdmin_UpdateSettings(edict_t* ent, pmenuhnd_t* setmenu)
+{
+	int				  i = 2;
+	q2eaks_admin_settings_t* settings = (q2eaks_admin_settings_t*)setmenu->arg;
+
+	PMenu_UpdateEntry(setmenu->entries + i, G_Fmt("Auto Bunnyhop:\t {}", settings->sv_auto_bhop ? "On" : "Off").data(), PMENU_ALIGN_LEFT, Q2EaksAdmin_Change_sv_auto_bhop);
+	i++;
+	PMenu_UpdateEntry(setmenu->entries + i, G_Fmt("Eyecam:\t {}", settings->sv_eyecam ? "On" : "Off").data(), PMENU_ALIGN_LEFT, Q2EaksAdmin_Change_sv_eyecam);
+	i++;
+	PMenu_UpdateEntry(setmenu->entries + i, G_Fmt("Game Timer:\t {}", settings->sv_game_timer ? "On" : "Off").data(), PMENU_ALIGN_LEFT, Q2EaksAdmin_Change_sv_game_timer);
+	i++;
+	PMenu_UpdateEntry(setmenu->entries + i, G_Fmt("Print Frags:\t {}", settings->sv_print_frags ? "On" : "Off").data(), PMENU_ALIGN_LEFT, Q2EaksAdmin_Change_sv_print_frags);
+	i++;
+	PMenu_UpdateEntry(setmenu->entries + i, G_Fmt("Speedometer:\t {}", settings->sv_speedometer ? "On" : "Off").data(), PMENU_ALIGN_LEFT, Q2EaksAdmin_Change_sv_speedometer);
+	i++;
+	PMenu_UpdateEntry(setmenu->entries + i, G_Fmt("Target ID:\t {}", settings->sv_target_id ? "On" : "Off").data(), PMENU_ALIGN_LEFT, Q2EaksAdmin_Change_sv_target_id);
+	i++;
+	PMenu_UpdateEntry(setmenu->entries + i, G_Fmt("Faster Blasters:\t {}", settings->g_faster_blasters ? "On" : "Off").data(), PMENU_ALIGN_LEFT, Q2EaksAdmin_Change_g_faster_blasters);
+	i++;
+	PMenu_UpdateEntry(setmenu->entries + i, G_Fmt("Faster Flechettes:\t {}", settings->g_faster_flechettes ? "On" : "Off").data(), PMENU_ALIGN_LEFT, Q2EaksAdmin_Change_g_faster_flechettes);
+	i++;
+	PMenu_UpdateEntry(setmenu->entries + i, G_Fmt("Faster Rockets:\t {}", settings->g_faster_rockets ? "On" : "Off").data(), PMENU_ALIGN_LEFT, Q2EaksAdmin_Change_g_faster_rockets);
+	i++;
+	PMenu_UpdateEntry(setmenu->entries + i, G_Fmt("No Self Damage:\t {}", settings->g_no_self_damage ? "On" : "Off").data(), PMENU_ALIGN_LEFT, Q2EaksAdmin_Change_g_no_self_damage);
+	i++;
+	PMenu_UpdateEntry(setmenu->entries + i, G_Fmt("Start With Chainfist:\t {}", settings->g_start_with_chainfist ? "On" : "Off").data(), PMENU_ALIGN_LEFT, Q2EaksAdmin_Change_g_start_with_chainfist);
+	i++;
+	PMenu_UpdateEntry(setmenu->entries + i, G_Fmt("Start With Shotgun:\t {}", settings->g_start_with_shotgun ? "On" : "Off").data(), PMENU_ALIGN_LEFT, Q2EaksAdmin_Change_g_start_with_shotgun);
+	i++;
+
+	PMenu_Update(ent);
+}
+
+// Q2Eaks admin menu layout definition
+const pmenu_t q2eaks_setmenu[] = {
+	{ "*Q2Eaks Menu", PMENU_ALIGN_CENTER, nullptr },
+	{ "", PMENU_ALIGN_CENTER, nullptr },
+	{ "", PMENU_ALIGN_LEFT, nullptr }, // sv_auto_bhop
+	{ "", PMENU_ALIGN_LEFT, nullptr }, // sv_eyecam
+	{ "", PMENU_ALIGN_LEFT, nullptr }, // sv_game_timer
+	{ "", PMENU_ALIGN_LEFT, nullptr }, // sv_print_frags
+	{ "", PMENU_ALIGN_LEFT, nullptr }, // sv_speedometer
+	{ "", PMENU_ALIGN_LEFT, nullptr }, // sv_target_id
+	{ "", PMENU_ALIGN_LEFT, nullptr }, // g_faster_blasters
+	{ "", PMENU_ALIGN_LEFT, nullptr }, // g_faster_flechettes
+	{ "", PMENU_ALIGN_LEFT, nullptr }, // g_faster_rockets
+	{ "", PMENU_ALIGN_LEFT, nullptr }, // g_no_self_damage
+	{ "", PMENU_ALIGN_LEFT, nullptr }, // g_start_with_chainfist
+	{ "", PMENU_ALIGN_LEFT, nullptr }, // g_start_with_shotgun
+	{ "", PMENU_ALIGN_LEFT, nullptr },
+	{ "Apply", PMENU_ALIGN_LEFT, Q2EaksAdmin_SettingsApply },
+	{ "Cancel", PMENU_ALIGN_LEFT, CTFAdmin_SettingsCancel }
+};
+
+// Q2Eaks open admin settings menu
+void Q2EaksAdmin_Settings(edict_t* ent, pmenuhnd_t* p)
+{
+	q2eaks_admin_settings_t* settings;
+	pmenuhnd_t* menu;
+
+	PMenu_Close(ent);
+
+	settings = (q2eaks_admin_settings_t*)gi.TagMalloc(sizeof(*settings), TAG_LEVEL);
+
+	settings->sv_auto_bhop = sv_auto_bhop->integer;
+	settings->sv_eyecam = sv_eyecam->integer;
+	settings->sv_game_timer = sv_game_timer->integer;
+	settings->sv_print_frags = sv_print_frags->integer;
+	settings->sv_speedometer = sv_speedometer->integer;
+	settings->sv_target_id = sv_target_id->integer;
+	settings->g_faster_blasters = g_faster_blasters->integer;
+	settings->g_faster_flechettes = g_faster_flechettes->integer;
+	settings->g_faster_rockets = g_faster_rockets->integer;
+	settings->g_no_self_damage = g_no_self_damage->integer;
+	settings->g_start_with_chainfist = g_start_with_chainfist->integer;
+	settings->g_start_with_shotgun = g_start_with_shotgun->integer;
+
+	menu = PMenu_Open(ent, q2eaks_setmenu, -1, sizeof(q2eaks_setmenu) / sizeof(pmenu_t), settings, nullptr);
+	Q2EaksAdmin_UpdateSettings(ent, menu);
+}
+
 pmenu_t adminmenu[] = {
 	{ "*Administration Menu", PMENU_ALIGN_CENTER, nullptr },
 	{ "", PMENU_ALIGN_CENTER, nullptr }, // blank
 	{ "Settings", PMENU_ALIGN_LEFT, CTFAdmin_Settings },
 	{ "", PMENU_ALIGN_LEFT, nullptr },
 	{ "", PMENU_ALIGN_LEFT, nullptr },
+	{ "Q2Eaks", PMENU_ALIGN_LEFT, Q2EaksAdmin_Settings }, // Q2Eaks admin settings menu
 	{ "Cancel", PMENU_ALIGN_LEFT, CTFAdmin_Cancel },
 	{ "", PMENU_ALIGN_CENTER, nullptr },
 };
