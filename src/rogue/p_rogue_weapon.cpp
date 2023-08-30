@@ -318,7 +318,7 @@ void weapon_etf_rifle_fire(edict_t *ent)
 	// Q2Eaks make this a local variable so we can adjust it
 	int speed = 1150;
 
-	// Q2Eaks make all blaster projectiles even faster
+	// Q2Eaks make flechettes faster, if configured
 	if (g_faster_flechettes->integer)
 		speed = 2750;
 

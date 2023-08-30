@@ -1386,6 +1386,17 @@ void SpawnItem(edict_t *ent, gitem_t *item)
 			return;
 		}
 
+		// Q2Eaks powerup disable cvar handling
+		if ((g_no_powerups->integer && (item->flags & IF_POWERUP)) ||
+			(g_no_quad->integer && item->id == IT_ITEM_QUAD) ||
+			(g_no_dualfire->integer && item->id == IT_ITEM_QUADFIRE) ||
+			(g_no_invulnerability->integer && item->id == IT_ITEM_INVULNERABILITY) ||
+			(g_no_invisibility->integer && item->id == IT_ITEM_INVISIBILITY))
+		{
+			G_FreeEdict(ent);
+			return;
+		}
+
 		//==========
 		// ROGUE
 		if (g_no_mines->integer)

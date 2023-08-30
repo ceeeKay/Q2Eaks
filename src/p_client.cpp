@@ -2346,7 +2346,7 @@ void ClientBeginDeathmatch(edict_t *ent)
 	gi.LocBroadcast_Print(PRINT_HIGH, "$g_entered_game", ent->client->pers.netname);
 
 	// Q2Eaks version string
-	const char *Q2EAKS_VERSION = "v0.14";
+	const char *Q2EAKS_VERSION = "v0.16";
 
 	// Q2Eaks map cvars to player-friendly strings
 	std::unordered_map<cvar_t*, const char*> Q2EAKS_CVAR_TO_STRING = {
@@ -2379,6 +2379,11 @@ void ClientBeginDeathmatch(edict_t *ent)
 		{ g_no_rlauncher, "No Rocket Launcher"},
 		{ g_no_shotgun, "No Shotgun"},
 		{ g_no_sshotgun, "No Super Shotgun"},
+		{ g_no_powerups, "No Powerups"},
+		{ g_no_quad, "No Quad Damage"},
+		{ g_no_dualfire, "No DualFire Damage"},
+		{ g_no_invulnerability, "No Invulnerability"},
+		{ g_no_invisibility, "No Invisibility"},
 	};
 
 	// Q2Eaks centerprint a welcome message showing which tweaks are enabled

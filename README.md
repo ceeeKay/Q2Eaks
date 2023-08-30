@@ -106,86 +106,44 @@ server game variable: `g_start_with_shotgun`
 
 Give newly-spawned players a fighting chance. Give them a shotgun and 10 shells when they spawn!
 
-### No BFG 10k
+### Powerup Disables
 
-server game variable: `g_no_bfg`
+server game variables:
 
-Don't spawn the BFG 10k, even if `g_dm_random_items` is set.
-### No Chainfist
+```
+g_no_powerups
+g_no_quad
+g_no_dualfire
+g_no_invulnerability
+g_no_invisibility
+```
 
-server game variable: `g_no_chainfist`
+Disable all powerups (overrides everything and includes all minor powerups), or individually disable, Quad Damage, DualFire Damage, Invulnerability, Invisibility.
 
-Don't spawn the Chainfist, even if `g_dm_random_items` is set.
-### No Chaingun
+### Weapon Disables
 
-server game variable: `g_no_chaingun`
+server game variables:
 
-Don't spawn the Chaingun, even if `g_dm_random_items` is set.
-### No Disruptor
+```
+g_no_bfg
+g_no_chainfist
+g_no_chaingun
+g_no_disruptor
+g_no_etf_rifle
+g_no_glauncher
+g_no_hyperblaster
+g_no_ionripper
+g_no_machinegun
+g_no_phalanx
+g_no_plasmabeam
+g_no_proxlauncher
+g_no_railgun
+g_no_rlauncher
+g_no_shotgun
+g_no_sshotgun
+```
 
-server game variable: `g_no_disruptor`
-
-Don't spawn the Disruptor, even if `g_dm_random_items` is set.
-### No ETF Rifle
-
-server game variable: `g_no_etf_rifle`
-
-Don't spawn the ETF Rifle, even if `g_dm_random_items` is set.
-### No Grenade Launcher
-
-server game variable: `g_no_glauncher`
-
-Don't spawn the Grenade Launcher, even if `g_dm_random_items` is set.
-### No Hyperblaster
-
-server game variable: `g_no_hyperblaster`
-
-Don't spawn the Hyperblaster, even if `g_dm_random_items` is set.
-### No Ionripper
-
-server game variable: `g_no_ionripper`
-
-Don't spawn the Ionripper, even if `g_dm_random_items` is set.
-### No Machinegun
-
-server game variable: `g_no_machinegun`
-
-Don't spawn the Machinegun, even if `g_dm_random_items` is set.
-### No Phalanx
-
-server game variable: `g_no_phalanx`
-
-Don't spawn the Phalanx, even if `g_dm_random_items` is set.
-### No Plasmabeam
-
-server game variable: `g_no_plasmabeam`
-
-Don't spawn the Plasmabeam, even if `g_dm_random_items` is set.
-### No Proximity Launcher
-
-server game variable: `g_no_proxlauncher`
-
-Don't spawn the Proximity Launcher, even if `g_dm_random_items` is set.
-### No Railgun
-
-server game variable: `g_no_railgun`
-
-Don't spawn the Railgun, even if `g_dm_random_items` is set.
-### No Rocket Launcher
-
-server game variable: `g_no_rlauncher`
-
-Don't spawn the Rocket Launcher, even if `g_dm_random_items` is set.
-### No Shotgun
-
-server game variable: `g_no_shotgun`
-
-Don't spawn the Shotgun, even if `g_dm_random_items` is set.
-### No Super Shotgun
-
-server game variable: `g_no_sshotgun`
-
-Don't spawn the Super Shotgun, even if `g_dm_random_items` is set.
+Don't spawn the given weapon, even if `g_dm_random_items` is set.
 
 ### Only Weapon
 
@@ -193,27 +151,29 @@ server game variable: `g_only_weapon`
 
 Disables weapon and ammo spawns and gives this player the specified weapon with infinite ammo.
 
-valid values: One weapon name in quotes, e.g. `"Chaingun"` or `"Rocket Launcher"` or `""` to disable mode.
+valid values: One weapon name in quotes, e.g. `"Chaingun"` or `"Rocket Launcher"` or `""` to disable only weapon mode.
 
-    - `"Grapple"`
-    - `"Blaster"`
-    - `"Chainfist"`
-    - `"Shotgun"`
-    - `"Super Shotgun"`
-    - `"Machinegun"`
-    - `"ETF Rifle"`
-    - `"Chaingun"`
-    - `"Grenades"`
-    - `"Grenade Launcher"`
-    - `"Prox Launcher"`
-    - `"Rocket Launcher"`
-    - `"HyperBlaster"`
-    - `"Ionripper"`
-    - `"Plasma Beam"`
-    - `"Railgun"`
-    - `"Phalanx"`
-    - `"BFG10K"`
-    - `"Disruptor"`
+```
+"Grapple"
+"Blaster"
+"Chainfist"
+"Shotgun"
+"Super Shotgun"
+"Machinegun"
+"ETF Rifle"
+"Chaingun"
+"Grenades"
+"Grenade Launcher"
+"Prox Launcher"
+"Rocket Launcher"
+"HyperBlaster"
+"Ionripper"
+"Plasma Beam"
+"Railgun"
+"Phalanx"
+"BFG10K"
+"Disruptor"
+```
 
 ## Installing
 
