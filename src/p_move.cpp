@@ -1054,7 +1054,7 @@ void PM_CheckJump()
 	}
 
 	// Q2Eaks allow this check to be skipped
-	if (!sv_auto_bhop->integer)
+	if (!sv_auto_bhop || !sv_auto_bhop->integer)
 	{
 		// must wait for jump to be released
 		if (pm->s.pm_flags & PMF_JUMP_HELD)
