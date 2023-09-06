@@ -106,6 +106,7 @@ cvar_t* g_weapon_respawn_time;
 cvar_t* sv_auto_bhop;
 cvar_t* sv_eyecam;
 cvar_t* sv_game_timer;
+cvar_t* sv_motd;
 cvar_t* sv_print_frags;
 cvar_t* sv_speedometer;
 cvar_t* sv_target_id;
@@ -287,6 +288,7 @@ void InitGame()
 	sv_auto_bhop = gi.cvar("sv_auto_bhop", "0", CVAR_NOFLAGS);
 	sv_eyecam = gi.cvar("sv_eyecam", "0", CVAR_NOFLAGS);
 	sv_game_timer = gi.cvar("sv_game_timer", "0", CVAR_NOFLAGS);
+	sv_motd = gi.cvar("sv_motd", "", CVAR_NOFLAGS);
 	sv_print_frags = gi.cvar("sv_print_frags", "0", CVAR_NOFLAGS);
 	sv_speedometer = gi.cvar("sv_speedometer", "0", CVAR_NOFLAGS);
 	sv_target_id = gi.cvar("sv_target_id", "0", CVAR_NOFLAGS);

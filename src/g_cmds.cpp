@@ -1730,6 +1730,9 @@ void ClientCommand(edict_t *ent)
 	// ZOID
 	else if (Q_strcasecmp(cmd, "switchteam") == 0)
 		Cmd_Switchteam_f(ent);
+	// Q2Eaks re-display message of the day if client asks us to
+	else if (Q_strcasecmp(cmd, "motd") == 0)
+		gi.LocClient_Print(ent, PRINT_HIGH, "Message of the day: {}\n", *sv_motd->string ? sv_motd->string : "(none)");
 #ifndef KEX_Q2_GAME
 	else // anything that doesn't match a command will be a chat
 		Cmd_Say_f(ent, true);

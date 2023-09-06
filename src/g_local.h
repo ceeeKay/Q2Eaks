@@ -1898,6 +1898,7 @@ extern cvar_t* g_grapple_damage;
 extern cvar_t* sv_auto_bhop;
 extern cvar_t* sv_eyecam;
 extern cvar_t* sv_game_timer;
+extern cvar_t* sv_motd;
 extern cvar_t* sv_print_frags;
 extern cvar_t* sv_speedometer;
 extern cvar_t* sv_target_id;

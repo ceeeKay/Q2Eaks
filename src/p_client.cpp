@@ -2358,6 +2358,7 @@ void ClientBeginDeathmatch(edict_t *ent)
 		{ sv_auto_bhop, "Auto Bunnyhop" },
 		{ sv_eyecam, "Eyecam" },
 		{ sv_game_timer, "Game Timer" },
+		{ sv_motd, "Message of the Day" },
 		{ sv_print_frags, "Print Frags"},
 		{ sv_speedometer, "Speedometer" },
 		{ sv_target_id, "Target ID" },
@@ -2420,7 +2421,14 @@ void ClientBeginDeathmatch(edict_t *ent)
 			}
 		}
 	}
-	enabled_cvars += " \nQuake Remastered community discord\nquakeqe.com";
+	// welcome message trailer
+	enabled_cvars += " \nQuake Remastered community discord:\nquakeqe.com\n \n";
+	// special handling for message of the day
+	if (*sv_motd->string)
+	{
+		enabled_cvars += "Message of the day:\n";
+		enabled_cvars += sv_motd->string;
+	}
 	gi.LocClient_Print(ent, PRINT_CENTER,
 						"Welcome to Q2Eaks {}, {}!\n"
 						"github.com/ceeeKay/Q2Eaks\n\n"
