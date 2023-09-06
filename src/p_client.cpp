@@ -955,6 +955,11 @@ void InitClientResp(gclient_t *client)
 	if (G_TeamplayEnabled() && client->pers.connected && client->resp.ctf_team < CTF_TEAM1)
 		CTFAssignTeam(client);
 	// ZOID
+
+	// Q2Eaks bots are always ready
+	edict_t* ent = &g_edicts[1 + (client - game.clients)];
+	if (ent->svflags & SVF_BOT)
+		CTFReady(ent);
 }
 
 /*
