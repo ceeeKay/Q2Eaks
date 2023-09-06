@@ -2230,6 +2230,11 @@ bool CTFBeginElection(edict_t *ent, elect_t type, const char *msg)
 	{
 		e = g_edicts + i;
 		e->client->resp.voted = false;
+
+		// Q2Eaks skip bots in elections
+		if (e->svflags & SVF_BOT)
+			continue;
+
 		if (e->inuse)
 			count++;
 	}
