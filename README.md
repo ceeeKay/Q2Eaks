@@ -18,8 +18,7 @@ Navigate to `Q2Eaks` and you can toggle most mod settings on and off visually.
 
 ## New Server Variables
 
-All tweaks implemented as server variables, and are off (0) by default and
-need to be set on (1) before starting a map.
+All tweaks are implemented as server variables, and unless otherwise noted, are off (0) by default and need to be set on (1). Some tweaks (especially ones that affect item/weapon spawns) will only take proper effect after the map is restarted.
 
 ### Auto Bunnyhop
 
@@ -43,6 +42,14 @@ server variable: `sv_game_timer`
 
 Print a game timer in the corner of players' HUDs.
 
+### Message of the Day
+
+server variable: `sv_motd`
+
+Print the message of the day (a quoted string) in the "Welcome to Q2Eaks" message.
+
+Players can also check the message of the day with the `motd` console command.
+
 ### Print Frags
 
 server variable: `sv_print_frags`
@@ -59,7 +66,9 @@ Print a speedometer in players' HUDs.
 
 server variable: `sv_target_id`
 
-Print target ID (player name) in players' HUDs. Players can toggle enable/disable with 'id' command.
+Print target ID (name of who you're looking at) in players' HUDs.
+
+Once enabled on the server, players can individually enable/disable via the `id` console command.
 
 ### Faster Projectiles
 
