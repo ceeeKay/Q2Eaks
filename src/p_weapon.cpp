@@ -1297,7 +1297,7 @@ void Weapon_RocketLauncher_Fire(edict_t *ent)
 	}
 
 	// Q2Eaks make rockets faster (same speed as Quake 1)
-	if (g_faster_rockets)
+	if (g_faster_rockets->integer)
 		speed = 1000;
 
 	vec3_t start, dir;
